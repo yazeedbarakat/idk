@@ -3,7 +3,7 @@
 
 #include <stddef.h>
 #include <stdlib.h>
-#include <stddef.h>
+#include <unistd.h>
 
 int	ft_isalpha(int a);
 int	ft_isdigit(int a);
