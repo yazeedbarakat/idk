@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_memcmp(const void *a,const void *b,size_t n)
+int	ft_memcmp(const void *a, const void *b, size_t n)
 {
 	const unsigned char	*sa;
 	const unsigned char	*sb;

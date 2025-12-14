@@ -12,21 +12,23 @@
 
 #include "libft.h"
 
-size_t	strlcat(char *a, const char *b, size_t n)
+size_t	ft_strlcat(char *a, const char *b, size_t n)
 {
 	size_t	ac;
 	size_t	bc;
-	int	i;
-	int	j;
+	size_t	i;
+	size_t	j;
 
 	ac = 0;
-	while (a[ac])
+	while (a[ac] && ac < n)
 		ac++;
 	bc = 0;
 	while (b[bc])
 		bc++;
 	i = ac;
 	j = 0;
+	if (ac == n)
+		return (n + bc);
 	while (b[j] && i < n - 1)
 	{
 		a[i++] = b[j++];

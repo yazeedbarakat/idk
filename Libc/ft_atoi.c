@@ -12,27 +12,27 @@
 
 int	ft_atoi(const char *a)
 {
-	const char	*sa;
-	bool	minus;
-	unsigned int	n;
+	int	n;
+	int	minus;
 
-	sa = a;
-	while (*sa < '0' || *sa > '9' || *sa == '-')
-		sa++;
-	if (*sa == '-')
+	minus = 0;
+	while (*a == ' ' || *a == '\t' || *a == '\n'
+		|| *a == '\v' || *a == '\f' || *a == '\r')
+		a++;
+	if (*a == '-')
 	{
-		minus = true;
-		sa++;
+		minus = 1;
+		a++;
 	}
+	else if (*a == '+')
+		a++;
 	n = 0;
-	while (*sa >= '0' && *sa <= '9' && *sa != '\0')
+	while (*a >= '0' && *a <= '9')
 	{
-		n = n + *sa - '0';
-		sa++;
-		if (*sa != '\0')
-			n = n * 10;
+		n = n * 10 + (*a - '0');
+		a++;
 	}
-	if (minus)
+	if (minus == 1)
 		n = n * -1;
 	return (n);
 }
