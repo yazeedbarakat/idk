@@ -6,7 +6,7 @@
 /*   By: ybarakat <ybarakat@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 10:30:10 by ybarakat          #+#    #+#             */
-/*   Updated: 2025/12/01 10:30:22 by ybarakat         ###   ########.fr       */
+/*   Updated: 2025/12/15 16:58:34 by ybarakat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 size_t	ft_strlen(const char *a)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	while (a[i])

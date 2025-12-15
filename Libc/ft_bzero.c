@@ -6,11 +6,11 @@
 /*   By: ybarakat <ybarakat@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 10:31:19 by ybarakat          #+#    #+#             */
-/*   Updated: 2025/12/01 10:31:21 by ybarakat         ###   ########.fr       */
+/*   Updated: 2025/12/15 16:45:56 by ybarakat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libc.h"
+#include "libft.h"
 
 void	ft_bzero(void *a, size_t n)
 {

@@ -6,13 +6,13 @@
 /*   By: ybarakat <ybarakat@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 10:29:50 by ybarakat          #+#    #+#             */
-/*   Updated: 2025/12/01 10:50:39 by ybarakat         ###   ########.fr       */
+/*   Updated: 2025/12/15 16:48:44 by ybarakat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_isprint(int a)
 {
-	if (a >= 32 && a <= 127)
+	if (a >= 32 && a <= 126)
 		return (1);
 	return (0);
 }

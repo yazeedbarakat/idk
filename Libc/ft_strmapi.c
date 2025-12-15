@@ -6,7 +6,7 @@
 /*   By: ybarakat <ybarakat@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 10:38:43 by ybarakat          #+#    #+#             */
-/*   Updated: 2025/12/01 10:38:45 by ybarakat         ###   ########.fr       */
+/*   Updated: 2025/12/15 16:59:41 by ybarakat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	if (!s || !f)
 		return (NULL);
 	a = malloc(ft_strlen(s) + 1);
+	if (!a)
+		return (NULL);
 	i = 0;
 	while (s[i] != '\0')
 	{
@@ -29,29 +31,3 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	a[i] = '\0';
 	return (a);
 }
-/*
-#include <stdio.h>
-#include "libft.h"
-
-// Example function used by ft_strmapi
-char    my_func(unsigned int i, char c)
-{
-    return (c + i);
-}
-
-int main(void)
-{
-    char *result;
-
-    result = ft_strmapi("abcd", my_func);
-    if (result)
-    {
-        printf("Result: %s\n", result);
-        free(result);
-    }
-    else
-        printf("ft_strmapi returned NULL\n");
-
-    return 0;
-}
-*/
