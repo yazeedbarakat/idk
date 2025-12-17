@@ -6,7 +6,7 @@
 /*   By: ybarakat <yazeed.barakat@learner.42.tech>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 17:13:28 by ybarakat          #+#    #+#             */
-/*   Updated: 2025/12/17 16:34:05 by ybarakat         ###   ########.fr       */
+/*   Updated: 2025/12/17 22:44:19 by ybarakat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,28 @@
 #include <unistd.h>
 #include "libft.h"
 
+int	nbr_print_count(int n)
+{
+	int	save_n;
+	int	counter;
+
+	save_n = n;
+	counter = 0;
+	while (n != 0)
+	{
+		n = n / 10;
+		counter++;
+	}
+	ft_putnbr_fd(save_n, 1);
+	return (counter);
+}
 void	ft_put_uns_nbr(unsigned int n)
 {
 	long	new_n;
 
 	new_n = n;
 	if (new_n >= 10)
-		ft_putnbr_fd(new_n / 10, 1);
+		ft_put_uns_nbr(new_n / 10);
 	ft_putchar_fd((new_n % 10) + '0', 1);
 }
 
@@ -34,7 +49,7 @@ void	ft_put_base(unsigned long n, unsigned int base, char let)
 		write (1, "0x", 2);
 		let = 'x';
 	}
-	if (let < 91)
+	if (let == 'X')
 		set = "0123456789ABCDEF";
 	if (n >= base)
 		ft_put_base(n / base, base, let);
@@ -47,7 +62,10 @@ void	ft_put_base(unsigned long n, unsigned int base, char let)
 int	ft_printf(const char *a, ...)
 {
 	va_list	args;
+	void *	save;
+	int	counter;
 
+	counter = 0;
 	va_start(args, a);
 	while (*a != '\0')
 	{
@@ -55,22 +73,33 @@ int	ft_printf(const char *a, ...)
 		{
 			a++;
 			if (*a == 'c')
-				ft_putchar_fd((va_arg(args, int )), 1);
+			{
+				ft_putchar_fd(va_arg(args, int), 1);
+				counter++;
+			}
 			else if (*a == 'd' || *a == 'i')
-				ft_putnbr_fd(va_arg(args, int), 1);
+				counter += nbr_print_count(va_arg(args, int));
 			else if (*a == 's')
 			{
-				if (!va_arg(args, int))
-					write (1, "null", 4);
+				save = va_arg(args, char *);
+				if (!save)
+					write (1, "(null)", 6);
 				else
-					ft_putstr_fd(va_arg(args, char *), 1);
+				{
+					ft_putstr_fd(save, 1);
+					counter += ft_strlen(save);
+				}
 			}
 			else if (*a == 'p')
 			{
-				if (!va_arg(args, unsigned long))
-					write (1, "nil", 3);
+				save = va_arg(args, void *);
+				if (!save)
+					write (1, "(nil)", 5);
 				else
-					ft_put_base(va_arg(args, unsigned long), 16, *a);
+				{
+					ft_put_base((unsigned long)save, 16, *a);
+					counter += ft_strlen(save);
+				}
 			}
 			else if (*a == 'u')
 				ft_put_uns_nbr(va_arg(args, unsigned int));
@@ -82,12 +111,14 @@ int	ft_printf(const char *a, ...)
 				write (1, a, 1);
 		}
 		else
+		{
 			write (1, a, 1);
+			counter++;
+		}
 		a++;
 	}
-	return (1);
+	return (counter);
 }
-
 #include <stdio.h>
 #include <limits.h>
 
@@ -151,4 +182,3 @@ int main(void)
 
     return 0;
 }
-
