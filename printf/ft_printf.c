@@ -6,7 +6,7 @@
 /*   By: ybarakat <yazeed.barakat@learner.42.tech>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 17:13:28 by ybarakat          #+#    #+#             */
-/*   Updated: 2025/12/17 22:44:19 by ybarakat         ###   ########.fr       */
+/*   Updated: 2025/12/21 17:03:04 by ybarakat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,15 @@
 #include <unistd.h>
 #include "libft.h"
 
-int	nbr_print_count(int n)
+int	nbr_count_print(int n)
 {
 	int	save_n;
 	int	counter;
 
 	save_n = n;
 	counter = 0;
+	if (n <= 0)
+		counter++;
 	while (n != 0)
 	{
 		n = n / 10;
@@ -29,41 +31,78 @@ int	nbr_print_count(int n)
 	ft_putnbr_fd(save_n, 1);
 	return (counter);
 }
-void	ft_put_uns_nbr(unsigned int n)
+
+void	print_unbr(unsigned int n)
 {
 	long	new_n;
 
 	new_n = n;
 	if (new_n >= 10)
-		ft_put_uns_nbr(new_n / 10);
+		print_unbr(new_n / 10);
 	ft_putchar_fd((new_n % 10) + '0', 1);
 }
 
-void	ft_put_base(unsigned long n, unsigned int base, char let)
+int	unbr_count_print(unsigned int n)
+{
+	unsigned int	save_n;
+	int		counter;
+
+	save_n = n;
+	counter = 0;
+	if (n == 0)
+		counter++;
+	while (n != 0)
+	{
+		n = n / 10;
+		counter++;
+	}
+	print_unbr(save_n);
+	return (counter);
+}
+
+void	print_hex(unsigned long n, char let)
 {
 	char	*set;
-	
+
+	if (n == 0)
+	{
+		write (1, "0", 1);
+		return ;
+	}
 	set = "0123456789abcdef";
 	if (let == 'p')
 	{
 		write (1, "0x", 2);
 		let = 'x';
 	}
-	if (let == 'X')
+	else if (let == 'X')
 		set = "0123456789ABCDEF";
-	if (n >= base)
-		ft_put_base(n / base, base, let);
+	if (n >= 16)
+		print_hex(n / 16, let);
+	ft_putchar_fd(set[(n % 16)], 1);
+}
+
+int	hex_counter(unsigned long n)
+{
+	int	counter;
+
 	if (n == 0)
-		ft_putchar_fd('1', 1);
-	else
-		ft_putchar_fd(set[(n % base)], 1);
+		return (1);
+	counter = 0;
+	while (n > 0)
+	{
+		n = n / 16;
+		counter++;
+	}
+	return (counter);
 }
 
 int	ft_printf(const char *a, ...)
 {
-	va_list	args;
-	void *	save;
-	int	counter;
+	va_list		args;
+	void		*save;
+	int		counter;
+	unsigned int	n;
 
 	counter = 0;
 	va_start(args, a);
@@ -78,12 +117,15 @@ int	ft_printf(const char *a, ...)
 				counter++;
 			}
 			else if (*a == 'd' || *a == 'i')
-				counter += nbr_print_count(va_arg(args, int));
+				counter += nbr_count_print(va_arg(args, int));
 			else if (*a == 's')
 			{
 				save = va_arg(args, char *);
 				if (!save)
+				{
 					write (1, "(null)", 6);
+					counter += 6;
+				}
 				else
 				{
 					ft_putstr_fd(save, 1);
@@ -94,21 +136,29 @@ int	ft_printf(const char *a, ...)
 			{
 				save = va_arg(args, void *);
 				if (!save)
+				{
 					write (1, "(nil)", 5);
+					counter += 5;
+				}
 				else
 				{
-					ft_put_base((unsigned long)save, 16, *a);
-					counter += ft_strlen(save);
+					print_hex((unsigned long)save, *a);
+					counter += 2 + hex_counter((unsigned long)save);
 				}
 			}
 			else if (*a == 'u')
-				ft_put_uns_nbr(va_arg(args, unsigned int));
+				counter += unbr_count_print(va_arg(args, unsigned int));
 			else if (*a == 'x' || *a == 'X')
-				ft_put_base(va_arg(args, unsigned int), 16, *a);
-			else if (*a == 'b')
-				ft_put_base(va_arg(args, unsigned int), 2, *a);
+			{
+				n = va_arg(args, unsigned int);
+				print_hex(n, *a);
+				counter += hex_counter(n);
+			}
 			else if (*a == '%')
+			{
 				write (1, a, 1);
+				counter++;
+			}
 		}
 		else
 		{
@@ -119,6 +169,7 @@ int	ft_printf(const char *a, ...)
 	}
 	return (counter);
 }
+/*
 #include <stdio.h>
 #include <limits.h>
 
@@ -182,3 +233,4 @@ int main(void)
 
     return 0;
 }
+*/
