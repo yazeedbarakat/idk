@@ -6,7 +6,7 @@
 /*   By: ybarakat <ybarakat@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 17:13:28 by ybarakat          #+#    #+#             */
-/*   Updated: 2025/12/21 18:53:09 by ybarakat         ###   ########.fr       */
+/*   Updated: 2025/12/21 20:38:41 by ybarakat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,75 +30,84 @@ int	nbr_count_print(int n)
 	return (counter);
 }
 
+int	char_percent(char c, va_list args)
+{
+	if (c == 'c')
+	{
+		ft_putchar_fd(va_arg(args, int), 1);
+		return (1);
+	}
+	if (c == '%')
+	{
+		write(1, "%", 1);
+		return (1);
+	}
+	return (0);
+}
+
+int	string_pointer(char c, va_list args)
+{
+	void	*save;
+
+	if (c == 's')
+	{
+		save = va_arg(args, char *);
+		if (!save)
+			return (write(1, "(null)", 6), 6);
+		ft_putstr_fd(save, 1);
+		return (ft_strlen(save));
+	}
+	if (c == 'p')
+	{
+		save = va_arg(args, void *);
+		if (!save)
+			return (write(1, "(nil)", 5), 5);
+		print_hex((unsigned long)save, 'p');
+		return (2 + hex_counter((unsigned long)save));
+	}
+	return (0);
+}
+
+int	numbers(char c, va_list args)
+{
+	unsigned int	n;
+
+	if (c == 'd' || c == 'i')
+		return (nbr_count_print(va_arg(args, int)));
+	if (c == 'u')
+		return (unbr_count_print(va_arg(args, unsigned int)));
+	if (c == 'x' || c == 'X')
+	{
+		n = va_arg(args, unsigned int);
+		print_hex(n, c);
+		return (hex_counter(n));
+	}
+	return (0);
+}
+
 int	ft_printf(const char *a, ...)
 {
-	va_list		args;
-	void		*save;
+	va_list	args;
 	int		counter;
-	unsigned int	n;
 
 	counter = 0;
 	va_start(args, a);
-	while (*a != '\0')
+	while (*a)
 	{
 		if (*a == '%')
 		{
 			a++;
-			if (*a == 'c')
-			{
-				ft_putchar_fd(va_arg(args, int), 1);
-				counter++;
-			}
-			else if (*a == 'd' || *a == 'i')
-				counter += nbr_count_print(va_arg(args, int));
-			else if (*a == 's')
-			{
-				save = va_arg(args, char *);
-				if (!save)
-				{
-					write (1, "(null)", 6);
-					counter += 6;
-				}
-				else
-				{
-					ft_putstr_fd(save, 1);
-					counter += ft_strlen(save);
-				}
-			}
-			else if (*a == 'p')
-			{
-				save = va_arg(args, void *);
-				if (!save)
-				{
-					write (1, "(nil)", 5);
-					counter += 5;
-				}
-				else
-				{
-					print_hex((unsigned long)save, *a);
-					counter += 2 + hex_counter((unsigned long)save);
-				}
-			}
-			else if (*a == 'u')
-				counter += unbr_count_print(va_arg(args, unsigned int));
-			else if (*a == 'x' || *a == 'X')
-			{
-				n = va_arg(args, unsigned int);
-				print_hex(n, *a);
-				counter += hex_counter(n);
-			}
-			else if (*a == '%')
-			{
-				write (1, a, 1);
-				counter++;
-			}
+			counter += char_percent(*a, args);
+			counter += string_pointer(*a, args);
+			counter += numbers(*a, args);
 		}
 		else
 		{
-			write (1, a, 1);
+			write(1, a, 1);
 			counter++;
 		}
 		a++;
 	}
+	va_end(args);
 	return (counter);
 }

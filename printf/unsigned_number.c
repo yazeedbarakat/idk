@@ -6,7 +6,7 @@
 /*   By: ybarakat <ybarakat@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 17:28:53 by ybarakat          #+#    #+#             */
-/*   Updated: 2025/12/21 18:03:41 by ybarakat         ###   ########.fr       */
+/*   Updated: 2025/12/21 20:44:12 by ybarakat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	print_unbr(unsigned int n)
 int	unbr_count_print(unsigned int n)
 {
 	unsigned int	save_n;
-	int		counter;
+	int				counter;
 
 	save_n = n;
 	counter = 0;
