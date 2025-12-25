@@ -1,4 +1,4 @@
-*This project has been created as part of the 42 curriculum by ybarakat.*
+*This activity has been created as part of the 42 curriculum by ybarakat.*
 
 # Printf Project
 
@@ -38,6 +38,7 @@ A custom implementation of the printf function in C. This project reproduces the
 
 ## Resources
 
+- [`What are variadic functions (va_list) in C`](https://youtu.be/oDC208zvsdg?si=S_PSy1PGx01CJlHB)
 - [`va_start`, `va_arg`, `va_end`, `va_copy` - Microsoft Docs`](https://learn.microsoft.com/en-us/cpp/c-runtime-library/reference/va-arg-va-copy-va-end-va-start?view=msvc-170) — Reference for variadic argument macros.
 - [`printf` family reference (C Standard Library) - cppreference`](https://en.cppreference.com/w/c/io/fprintf) — Standard `printf`, formatting specifiers, and return values.
 
@@ -46,3 +47,8 @@ A custom implementation of the printf function in C. This project reproduces the
 - Some ideas on how to shrink the code
 - Explaining function behavior
 - Reviewing and correcting Norminette
+
+### Algorithm and Data structure
+
+ft_printf uses a linear parsing algorithm that scans the format string character by character and dispatches each format specifier to a dedicated handler function using va_list.
+Numeric values are printed using recursive base-10 and base-16 conversion algorithms.
