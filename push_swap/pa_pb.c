@@ -6,31 +6,20 @@
 /*   By: ybarakat <yazeed.barakat@learner.42.tech>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 12:57:40 by ybarakat          #+#    #+#             */
-/*   Updated: 2026/01/22 13:18:24 by ybarakat         ###   ########.fr       */
+/*   Updated: 2026/01/22 14:52:34 by ybarakat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-void	p_stack(p_list	*first, p_list *second)
+void	pa(p_list **a, p_list **b)
 {
-	p_list	*save;
-	p_list	*new_h;
-	p_lst	*temp;
+	p_list *top_b;
+	p_list *top_a;
 
-	new_h = malloc(sizeof(p_list));
-	if (!new_h)
-		return (NULL);
-	if (second != NULL)
-	{
-		save = first;
-		new_h->next = save;;
-		save->prev = new_h;
-		first = new_h;
-		new_h->value = second->value;
-		temp = second;
-		second = second->next;
-		free(temp);
-	}
-
-
+	if(!a || !b)
+		return;
+	top_b = (*b);
+	top_a = (*a);
+	(*a)-> prev = 
+}
