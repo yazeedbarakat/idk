@@ -1,51 +1,53 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sa_sb_ss.c                                         :+:      :+:    :+:   */
+/*   ra_rb_rr.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ybarakat <ybarakat@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/04 17:16:17 by ybarakat          #+#    #+#             */
-/*   Updated: 2026/01/22 16:18:19 by ybarakat         ###   ########.fr       */
+/*   Created: 2026/01/22 15:19:12 by ybarakat          #+#    #+#             */
+/*   Updated: 2026/01/22 16:36:47 by ybarakat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-
-void	sa(p_list **a)
+void	ra(p_list **a)
 {
-	p_list	*node;
+	p_list	*top;
+	p_list	*last;
 
 	if (!a || !*a || !(*a)->next)
 		return ;
-	node = (*a)->next;
-	(*a)->next = (*a)->next->next;
-	(*a)->prev = node;
-	if ((*a)->next != NULL)
-		(*a)->next->prev = *a;
-	node->next = *a;
-	node->prev = NULL;
-	(*a) = node;
+	top = *a;
+	*a = (*a)->next;
+	(*a)->prev = NULL;
+	last = *a;
+	while (last->next)
+		last = last->next;
+	last->next = top;
+	top->prev = last;
+	top->next = NULL;
 }
 
-void	sb(p_list **b)
+void	rb(p_list **b)
 {
-	p_list	*node;
-
+	p_list  *top;
+	p_list  *last;
+	
 	if (!b || !*b || !(*b)->next)
 		return ;
-	node = (*b)->next;
-	(*b)->next = (*b)->next->next;
-	(*b)->prev = node;
-	if ((*b)->next != NULL)
-		(*b)->next->prev = *b;
-	node->next = *b;
-	node->prev = NULL;
-	(*b) = node;
+	top = *b;
+	*b = (*b)->next;
+	(*b)->prev = NULL;
+	last = *b;
+	while (last->next)
+		last = last->next;
+	last->next = top;
+	top->prev = last;
+	top->next = NULL;
 }
 
-void	ss(p_list **a, p_list **b)
+void	rr(p_list **a, p_list **b)
 {
-	sa(a);
-	sb(b);
+	ra(a);
+	rb(b);
 }
