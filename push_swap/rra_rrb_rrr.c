@@ -6,16 +6,18 @@
 /*   By: ybarakat <yazeed.barakat@learner.42.tech>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 15:48:48 by ybarakat          #+#    #+#             */
-/*   Updated: 2026/01/22 16:11:56 by ybarakat         ###   ########.fr       */
+/*   Updated: 2026/01/23 20:13:43 by ybarakat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <push_swap.h>
 
-void	rra(p_list **a)
+void	rra(stack **a)
 {
-	p_list	*last;
+	stack	*last;
 
+	if (!a || !*a || !(*a)->next)
+		return ;
 	last = *a;
 	while (last->next)
 		last = last->next;
@@ -26,10 +28,12 @@ void	rra(p_list **a)
 	(*a) = last;
 }
 
-void	rrb(p_list **b)
+void	rrb(stack **b)
 {
-	p_list	*last;
+	stack	*last;
 
+	if (!b || !*b || !(*b)->next)
+		return ;
 	last = *b;
 	while (last->next)
 		last = last->next;
@@ -40,7 +44,7 @@ void	rrb(p_list **b)
 	(*b) = last;
 }
 
-void	rrr(p_list **a, p_list **b)
+void	rrr(stack **a, stack **b)
 {
 	rra(a);
 	rrb(b);

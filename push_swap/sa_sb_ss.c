@@ -6,15 +6,15 @@
 /*   By: ybarakat <ybarakat@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 17:16:17 by ybarakat          #+#    #+#             */
-/*   Updated: 2026/01/22 16:18:19 by ybarakat         ###   ########.fr       */
+/*   Updated: 2026/01/23 20:08:00 by ybarakat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sa(p_list **a)
+void	sa(stack **a)
 {
-	p_list	*node;
+	stack	*node;
 
 	if (!a || !*a || !(*a)->next)
 		return ;
@@ -28,9 +28,9 @@ void	sa(p_list **a)
 	(*a) = node;
 }
 
-void	sb(p_list **b)
+void	sb(stack **b)
 {
-	p_list	*node;
+	stack	*node;
 
 	if (!b || !*b || !(*b)->next)
 		return ;
@@ -44,7 +44,7 @@ void	sb(p_list **b)
 	(*b) = node;
 }
 
-void	ss(p_list **a, p_list **b)
+void	ss(stack **a, stack **b)
 {
 	sa(a);
 	sb(b);

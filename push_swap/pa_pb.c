@@ -6,16 +6,16 @@
 /*   By: sbarakat <sbarakat@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 14:20:05 by sbarakat          #+#    #+#             */
-/*   Updated: 2026/01/22 14:20:34 by sbarakat         ###   ########.fr       */
+/*   Updated: 2026/01/23 20:09:03 by ybarakat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void    pa(p_list **a, p_list **b)
+void    pa(stack **a, stack **b)
 {
-    p_list *top_b;
-    p_list *top_a;
+    stack *top_b;
+    stack *top_a;
 
     if (!b || !*b)
         return;
@@ -32,10 +32,10 @@ void    pa(p_list **a, p_list **b)
     *a = top_a;
 }
 
-void    pb(p_list **a, p_list **b)
+void    pb(stack **a, stack **b)
 {
-    p_list *top_b;
-    p_list *top_a;
+    stack *top_b;
+    stack *top_a;
 
     if (!a || !*a)
         return;

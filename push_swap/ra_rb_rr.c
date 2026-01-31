@@ -6,14 +6,14 @@
 /*   By: ybarakat <ybarakat@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 15:19:12 by ybarakat          #+#    #+#             */
-/*   Updated: 2026/01/22 16:36:47 by ybarakat         ###   ########.fr       */
+/*   Updated: 2026/01/23 20:09:57 by ybarakat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ra(p_list **a)
+void	ra(stack **a)
 {
-	p_list	*top;
-	p_list	*last;
+	stack	*top;
+	stack	*last;
 
 	if (!a || !*a || !(*a)->next)
 		return ;
@@ -28,10 +28,10 @@ void	ra(p_list **a)
 	top->next = NULL;
 }
 
-void	rb(p_list **b)
+void	rb(stack **b)
 {
-	p_list  *top;
-	p_list  *last;
+	stack  *top;
+	stack  *last;
 	
 	if (!b || !*b || !(*b)->next)
 		return ;
@@ -46,7 +46,7 @@ void	rb(p_list **b)
 	top->next = NULL;
 }
 
-void	rr(p_list **a, p_list **b)
+void	rr(stack **a, stack **b)
 {
 	ra(a);
 	rb(b);

@@ -6,7 +6,7 @@
 /*   By: ybarakat <ybarakat@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 16:30:47 by ybarakat          #+#    #+#             */
-/*   Updated: 2026/01/22 16:37:32 by ybarakat         ###   ########.fr       */
+/*   Updated: 2026/01/23 20:07:02 by ybarakat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PUSH_SWAP_H
@@ -20,18 +20,18 @@ typedef struct s_list
 	int		value;
 	struct s_list	*prev;
 	struct s_list	*next;
-}	p_list;
+}	stack;
 
-void    sa(p_list **a);
-void	sb(p_list **b);
-void    ss(p_list **a, p_list **b);
-void    pa(p_list **a, p_list **b);
-void    pb(p_list **a, p_list **b);
-void    ra(p_list **a);
-void    rb(p_list **b);
-void    rr(p_list **a, p_list **b);
-void    rra(p_list **a);
-void    rrb(p_list **b);
-void    rrr(p_list **a, p_list **b);
+void    sa(stack **a);
+void	sb(stack **b);
+void    ss(stack **a, stack **b);
+void    pa(stack **a, stack **b);
+void    pb(stack **a, stack **b);
+void    ra(stack **a);
+void    rb(stack **b);
+void    rr(stack **a, stack **b);
+void    rra(stack **a);
+void    rrb(stack **b);
+void    rrr(stack **a, stack **b);
 
 #endif
