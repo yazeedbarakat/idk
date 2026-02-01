@@ -1,14 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   helper.c                                           :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybarakat <yazeed.barakat@learner.42.tech>  +#+  +:+       +#+        */
+/*   By: ybarakat <ybarakat@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/23 10:29:05 by ybarakat          #+#    #+#             */
-/*   Updated: 2026/02/01 14:41:59 by ybarakat         ###   ########.fr       */
+/*   Created: 2025/12/15 15:30:57 by ybarakat          #+#    #+#             */
+/*   Updated: 2025/12/15 15:30:59 by ybarakat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
+void	ft_lstclear(t_list **lst, void (*del)(void *))
+{
+	t_list	*a;
+
+	if (lst && del)
+	{
+		while (*lst != NULL)
+		{
+			a = (*lst)->next;
+			ft_lstdelone(*lst, del);
+			*lst = a;
+		}
+	}
+}

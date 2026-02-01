@@ -1,14 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   helper.c                                           :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybarakat <yazeed.barakat@learner.42.tech>  +#+  +:+       +#+        */
+/*   By: ybarakat <ybarakat@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/23 10:29:05 by ybarakat          #+#    #+#             */
-/*   Updated: 2026/02/01 14:41:59 by ybarakat         ###   ########.fr       */
+/*   Created: 2025/12/01 10:32:08 by ybarakat          #+#    #+#             */
+/*   Updated: 2025/12/01 10:32:10 by ybarakat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
+size_t	ft_strlcpy(char *a, const char *b, size_t n)
+{
+	size_t	i;
+
+	i = 0;
+	if (n > 0)
+	{
+		while (b[i] && i < n - 1)
+		{
+			a[i] = b[i];
+			i++;
+		}
+		a[i] = '\0';
+	}
+	return (ft_strlen(b));
+}

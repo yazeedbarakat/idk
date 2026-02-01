@@ -1,14 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   helper.c                                           :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybarakat <yazeed.barakat@learner.42.tech>  +#+  +:+       +#+        */
+/*   By: ybarakat <ybarakat@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/23 10:29:05 by ybarakat          #+#    #+#             */
-/*   Updated: 2026/02/01 14:41:59 by ybarakat         ###   ########.fr       */
+/*   Created: 2025/12/15 15:32:06 by ybarakat          #+#    #+#             */
+/*   Updated: 2025/12/15 15:32:12 by ybarakat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
+t_list	*ft_lstnew(void *content)
+{
+	t_list	*a;
+
+	a = malloc(sizeof(t_list));
+	if (!a)
+		return (NULL);
+	a->content = content;
+	a->next = NULL;
+	return (a);
+}

@@ -1,14 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   helper.c                                           :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybarakat <yazeed.barakat@learner.42.tech>  +#+  +:+       +#+        */
+/*   By: ybarakat <ybarakat@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/23 10:29:05 by ybarakat          #+#    #+#             */
-/*   Updated: 2026/02/01 14:41:59 by ybarakat         ###   ########.fr       */
+/*   Created: 2025/12/01 10:30:10 by ybarakat          #+#    #+#             */
+/*   Updated: 2025/12/15 16:58:34 by ybarakat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
+size_t	ft_strlen(const char *a)
+{
+	size_t	i;
+
+	i = 0;
+	while (a[i])
+		i++;
+	return (i);
+}

@@ -6,7 +6,7 @@
 /*   By: ybarakat <yazeed.barakat@learner.42.tech>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 23:57:04 by ybarakat          #+#    #+#             */
-/*   Updated: 2026/02/01 11:30:13 by ybarakat         ###   ########.fr       */
+/*   Updated: 2026/02/01 14:22:26 by ybarakat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ int	ft_sqrt(int n)
 	return (x);
 }
 
-int	get_min(stack **a)
+int	get_min(stack **s)
 {
 	stack	*temp;
 	int	min;
 
-	temp = *a;
+	temp = *s;
 	min = temp->value;
 	while (temp)
 	{
@@ -47,12 +47,12 @@ int	get_min(stack **a)
 	return (min);
 }
 
-int	get_max(stack **a)
+int	get_max(stack **s)
 {
 	stack	*temp;
 	int	max;
 
-	temp = *a;
+	temp = *s;
 	max = temp->value;
 	while (temp)
 	{
@@ -94,7 +94,49 @@ void	sort_extend(stack **a, stack **b, int range_num, int min, int range_size)
 	}
 }
 
-void	sort(stack **a, stack **b)
+int	get_pos(stack **s, int val)
+{
+	stack	*temp;
+	int	pos;
+
+	temp = *s;
+	pos = 0;
+	while (temp)
+	{
+		if (temp->value == val)
+			break;
+		pos++;
+		temp = temp->next;
+	}
+	return (pos);
+}
+
+void	push_back_b(stack **a, stack **b)
+{
+	int	max;
+	int	pos;
+	int	size;
+
+	max = get_max(b);
+	size = get_size(b);
+	pos = get_pos(b, max);
+	if (pos > size/2)
+	{
+		pos = size - pos;
+		while (pos-- > 0)
+			rrb(b);
+	}
+	else
+	{
+		while (pos-- > 0)
+			rb(b);
+	}
+	pa(a, b);
+}
+
+
+
+void	medium_sort(stack **a, stack **b)
 {
 	int	min;
 	int	max;
@@ -115,8 +157,8 @@ void	sort(stack **a, stack **b)
 
 	i = 0;
 	while (i < ranges)
-	{
-		sort_extend(a, b, i, min, range_size);
-		i++;
-	}
+		sort_extend(a, b, i++, min, range_size);
+	while (get_size(b) > 0)
+		push_back_b(a, b);
+
 }

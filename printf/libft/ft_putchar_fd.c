@@ -1,14 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   helper.c                                           :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybarakat <yazeed.barakat@learner.42.tech>  +#+  +:+       +#+        */
+/*   By: ybarakat <ybarakat@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/23 10:29:05 by ybarakat          #+#    #+#             */
-/*   Updated: 2026/02/01 14:41:59 by ybarakat         ###   ########.fr       */
+/*   Created: 2025/12/01 10:39:13 by ybarakat          #+#    #+#             */
+/*   Updated: 2025/12/01 10:39:14 by ybarakat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
+void	ft_putchar_fd(char c, int fd)
+{
+	write (fd, &c, 1);
+}

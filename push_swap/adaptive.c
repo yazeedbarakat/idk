@@ -1,14 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   helper.c                                           :+:      :+:    :+:   */
+/*   adaptive.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybarakat <yazeed.barakat@learner.42.tech>  +#+  +:+       +#+        */
+/*   By: ybarakat <ybarakat@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/23 10:29:05 by ybarakat          #+#    #+#             */
-/*   Updated: 2026/02/01 14:41:59 by ybarakat         ###   ########.fr       */
+/*   Created: 2026/02/01 14:20:51 by ybarakat          #+#    #+#             */
+/*   Updated: 2026/02/01 14:34:45 by ybarakat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+void	adaptive_sort(stack **a, stack **b)
+{
+	double	dis;
 
+	dis = disorder(a);
+	if (dis < 0.2)
+		simple_sort(a, b);
+	else if (dis >= 0.2 && dis < 0.5)
+		medium_sort(a, b);
+	else
+		complex_sort(a, b);
+}

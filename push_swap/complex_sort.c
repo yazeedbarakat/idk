@@ -6,7 +6,7 @@
 /*   By: ybarakat <ybarakat@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 20:16:34 by ybarakat          #+#    #+#             */
-/*   Updated: 2026/01/28 09:31:40 by ybarakat         ###   ########.fr       */
+/*   Updated: 2026/02/01 14:22:04 by ybarakat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	get_max_bits(stack **a)
 	return (bits);
 }
 
-void	sort(stack **a, stack **b)
+void	complex_sort(stack **a, stack **b)
 {
 	int	max_bits;
 	int	bit_pos;

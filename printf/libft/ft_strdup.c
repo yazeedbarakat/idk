@@ -1,14 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   helper.c                                           :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybarakat <yazeed.barakat@learner.42.tech>  +#+  +:+       +#+        */
+/*   By: ybarakat <ybarakat@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/23 10:29:05 by ybarakat          #+#    #+#             */
-/*   Updated: 2026/02/01 14:41:59 by ybarakat         ###   ########.fr       */
+/*   Created: 2025/12/01 10:36:39 by ybarakat          #+#    #+#             */
+/*   Updated: 2025/12/01 10:36:41 by ybarakat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
+char	*ft_strdup(const char *a)
+{
+	char	*b;
+	size_t	l;
+	size_t	i;
+
+	l = ft_strlen(a);
+	b = malloc(l + 1);
+	if (!b)
+		return (NULL);
+	i = 0;
+	while (i < l)
+	{
+		b[i] = a[i];
+		i++;
+	}
+	b[i] = '\0';
+	return (b);
+}
