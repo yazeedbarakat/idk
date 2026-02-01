@@ -6,7 +6,7 @@
 /*   By: ybarakat <yazeed.barakat@learner.42.tech>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 23:57:04 by ybarakat          #+#    #+#             */
-/*   Updated: 2026/01/28 10:09:24 by ybarakat         ###   ########.fr       */
+/*   Updated: 2026/02/01 11:30:13 by ybarakat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,14 +63,14 @@ int	get_max(stack **a)
 	return (max);
 }
 
-int	in_range(int value, int range_num, int min, range_size)
+int	in_range(int value, int range_num, int min, int range_size)
 {
 	int	start;
 	int	end;
 
 	start = min + (range_num * range_size);
 	end = start + range_size;
-	if (value >= start && < end)
+	if (value >= start && value < end)
 		return (1);
 	return (0);
 }
@@ -89,10 +89,8 @@ void	sort_extend(stack **a, stack **b, int range_num, int min, int range_size)
 		if (in_range(value, range_num, min, range_size))
 			pb(a, b);
 		else
-		{
 			ra(a);
-			i++;
-		}
+		i++;
 	}
 }
 
@@ -110,7 +108,7 @@ void	sort(stack **a, stack **b)
 	max = get_max(a);
 	ranges = ft_sqrt(get_size(*a));
 	if (ranges < 1)
-		renges = 1;
+		ranges = 1;
 	range_size = (max - min + 1) / ranges;
 	if (range_size < 1)
 		range_size = 1;
@@ -121,4 +119,4 @@ void	sort(stack **a, stack **b)
 		sort_extend(a, b, i, min, range_size);
 		i++;
 	}
-
+}
