@@ -6,7 +6,7 @@
 /*   By: ybarakat <ybarakat@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 20:16:34 by ybarakat          #+#    #+#             */
-/*   Updated: 2026/02/01 14:22:04 by ybarakat         ###   ########.fr       */
+/*   Updated: 2026/02/03 12:31:58 by ybarakat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	get_size(stack *a)
 		return (0);
 	temp = a;
 	s_size = 0;
-	while (temp->next)
+	while (temp)
 	{
 		s_size++;
 		temp = temp->next;
@@ -71,22 +71,22 @@ void	complex_sort(stack **a, stack **b)
 	int	max_bits;
 	int	bit_pos;
 	int	i;
-	int	num;
+	int	size;
 
 	if (!a || !*a)
 		return ;
-	max_bits = get_max_bits(*a);
+	max_bits = get_max_bits(a);
 	bit_pos = 0;
 	while (bit_pos < max_bits)
 	{
 		i = 0;
-		while (i < get_size(*a))
+		size = get_size(*a);
+		while (i < size)
 		{
-			num = (*a)->value;
-			if (get_bit(num, bit_pos) == 0)
-				pb(a, b);
-			else
+			if (((*a)->value >> bit_pos) & 1)
 				ra(a);
+			else
+				pb(a, b);
 			i++;
 		}
 		while (*b)

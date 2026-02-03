@@ -6,11 +6,11 @@
 /*   By: ybarakat <yazeed.barakat@learner.42.tech>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 15:48:48 by ybarakat          #+#    #+#             */
-/*   Updated: 2026/01/23 20:13:43 by ybarakat         ###   ########.fr       */
+/*   Updated: 2026/02/03 12:03:59 by ybarakat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <push_swap.h>
+#include "push_swap.h"
 
 void	rra(stack **a)
 {
@@ -26,6 +26,7 @@ void	rra(stack **a)
 	last->prev = NULL;
 	(*a)->prev = last;
 	(*a) = last;
+	write (1, "rra\n", 4);
 }
 
 void	rrb(stack **b)
@@ -42,6 +43,7 @@ void	rrb(stack **b)
 	last->prev = NULL;
 	(*b)->prev = last;
 	(*b) = last;
+	write (1, "rrb\n", 4);
 }
 
 void	rrr(stack **a, stack **b)

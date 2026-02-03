@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   simplez_sort.c                                     :+:      :+:    :+:   */
+/*   simple_sort.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ybarakat <ybarakat@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 15:10:32 by ybarakat          #+#    #+#             */
-/*   Updated: 2026/02/01 15:33:50 by ybarakat         ###   ########.fr       */
+/*   Updated: 2026/02/03 05:42:57 by sbarakat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	simple_sort(stack **a, stack **b)
 	int	pos;
 	int	size;
 
-	size = get_size(a);
+	size = get_size(*a);
 	while (size > 1)
 	{
 		min = get_min(a);

@@ -6,7 +6,7 @@
 /*   By: ybarakat <ybarakat@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 17:16:17 by ybarakat          #+#    #+#             */
-/*   Updated: 2026/01/23 20:08:00 by ybarakat         ###   ########.fr       */
+/*   Updated: 2026/02/03 12:01:02 by ybarakat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	sa(stack **a)
 	node->next = *a;
 	node->prev = NULL;
 	(*a) = node;
+	write (1, "sa\n", 3);
 }
 
 void	sb(stack **b)
@@ -42,6 +43,7 @@ void	sb(stack **b)
 	node->next = *b;
 	node->prev = NULL;
 	(*b) = node;
+	write (1, "sb\n", 3);
 }
 
 void	ss(stack **a, stack **b)

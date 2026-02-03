@@ -6,7 +6,7 @@
 /*   By: sabaraka <sabaraka@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 14:20:05 by sabaraka          #+#    #+#             */
-/*   Updated: 2026/02/01 17:37:18 by ybarakat         ###   ########.fr       */
+/*   Updated: 2026/02/03 12:01:50 by ybarakat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	pa(stack **a, stack **b)
 	top_a->next = *a;
 	top_a->prev = NULL;
 	*a = top_a;
+	write (1, "pa\n", 3);
 }
 
 void	pb(stack **a, stack **b)
@@ -48,4 +49,5 @@ void	pb(stack **a, stack **b)
 	top_b->next = *b;
 	top_b->prev = NULL;
 	*b = top_b;
+	write (1, "pb\n", 3);
 }

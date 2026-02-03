@@ -1,0 +1,57 @@
+# ==============================
+# project name
+# ==============================
+NAME = push_swap
+
+# ==============================
+# Compiler and flags
+# ==============================
+CC = cc
+CFLAGS = -Werror -Wextra -Wall
+
+#===============================
+# Source files
+# ==============================
+SRCS = \
+       adaptive.c\
+       check_errors.c\
+       complex_sort.c\
+       errors.c\
+       ft_strncmp.c\
+       main.c\
+       medium_sort.c\
+       rra_rrb_rrr.c\
+       simple_sort.c\
+       disorder.c\
+       ft_itoa.c\
+       helper.c\
+       make_stack.c\
+       pa_pb.c\
+       ra_rb_rr.c\
+       sa_sb_ss.c
+
+# ===============================
+# Object files
+# ===============================
+OBJS = $(SRCS:.c=.o)
+
+# ===============================
+#  Rules
+#  ==============================
+all: $(NAME)
+
+$(NAME): $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+clean:
+	rm -f $(OBJS)
+
+fclean: clean
+	rm -f $(NAME)
+
+re: fclean all
+
+.PHONY: all clean fclean re	
