@@ -6,13 +6,13 @@
 /*   By: ybarakat <yazeed.barakat@learner.42.tech>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 23:57:04 by ybarakat          #+#    #+#             */
-/*   Updated: 2026/02/04 17:34:43 by ybarakat         ###   ########.fr       */
+/*   Updated: 2026/02/04 18:13:02 by ybarakat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sort_extend(stack **a, stack **b, int start, int end)
+void	sort_extend(stack **a, stack **b, t_range range, t_bench bench)
 {
 	int	size;
 	int	pushed;
@@ -21,23 +21,23 @@ void	sort_extend(stack **a, stack **b, int start, int end)
 
 	size = get_size(*a);
 	pushed = 0;
-	mid = (start + end) / 2;
-	while (size-- && pushed < (end - start))
+	mid = ((range -> start) + (range -> end)) / 2;
+	while (size-- && pushed < ((range -> end) - (range -> start)))
 	{
 		ind = (*a)->index;
-		if (ind >= start && ind < end)
+		if (ind >= range -> start && ind < range -> end)
 		{
-			pb(a, b);
+			pb(a, b, bench);
 			if (ind < mid)
-				rb(b);
+				rb(b, bench);
 			pushed++;
 		}
 		else
-			ra(a);
+			ra(a, bench);
 	}
 }
 
-void	push_back_b(stack **a, stack **b)
+void	push_back_b(stack **a, stack **b, t_bench bench)
 {
 	int	max;
 	int	pos;
@@ -50,26 +50,26 @@ void	push_back_b(stack **a, stack **b)
 	{
 		pos = size - pos;
 		while (pos-- > 0)
-			rrb(b);
+			rrb(b, bench);
 	}
 	else
 	{
 		while (pos-- > 0)
-			rb(b);
+			rb(b, bench);
 	}
-	pa(a, b);
+	pa(a, b, bench);
 }
 
-void	medium_sort(stack **a, stack **b)
+void	medium_sort(stack **a, stack **b ,t_bench *bench)
 {
-	int	start;
-	int	end;
+	t_range	*range;
 	int	ranges;
 	int	range_size;
 	int	i;
 
-	if (!a || !*a)
-		return ;
+	range = malloc(sizeof(t_range));
+	if (!a || !(*a) || !range)
+		return (NULL);
 	index_stack(*a);
 	if (get_size(*a) <= 100)
 		ranges = 5;
@@ -81,11 +81,11 @@ void	medium_sort(stack **a, stack **b)
 	i = 0;
 	while (i < ranges)
 	{
-		start = i * range_size;
-		end = start + range_size;
-		sort_extend(a, b, start, end);
+		range -> start = i * range_size;
+		range -> end = range -> start + range_size;
+		sort_extend(a, b, range, bench);
 		i++;
 	}
 	while (get_size(*b) > 0)
-		push_back_b(a, b);
+		push_back_b(a, b, bench);
 }

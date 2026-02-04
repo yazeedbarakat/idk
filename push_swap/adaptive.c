@@ -6,13 +6,13 @@
 /*   By: ybarakat <ybarakat@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 14:20:51 by ybarakat          #+#    #+#             */
-/*   Updated: 2026/02/04 17:31:17 by ybarakat         ###   ########.fr       */
+/*   Updated: 2026/02/04 18:12:37 by ybarakat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	adaptive_sort(stack **a, stack **b, t_bench bench)
+void	adaptive_sort(stack **a, stack **b, t_bench *bench)
 {
 	double	dis;
 

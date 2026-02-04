@@ -6,7 +6,7 @@
 /*   By: saed <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 15:02:14 by saed              #+#    #+#             */
-/*   Updated: 2026/01/29 13:19:08 by sbarakat         ###   ########.fr       */
+/*   Updated: 2026/02/04 20:02:42 by ybarakat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdlib.h>
@@ -25,6 +25,20 @@ static int	count_len(long n)
 		n /= 10;
 	}
 	return (len);
+}
+
+char	*ft_ftoa(float n)
+{
+	int	x;
+	int	y;
+
+	x = n * 100;
+	write (2, ft_itoa(n), 2);
+	write (2, ".", 1);
+	x = x * 100;
+	y = n * 10000;
+	y = y - x;
+	write (2, ft_itoa(y), 2);
 }
 
 char	*ft_itoa(int n)

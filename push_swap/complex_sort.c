@@ -6,7 +6,7 @@
 /*   By: ybarakat <ybarakat@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 20:16:34 by ybarakat          #+#    #+#             */
-/*   Updated: 2026/02/04 14:00:25 by ybarakat         ###   ########.fr       */
+/*   Updated: 2026/02/04 18:11:53 by ybarakat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ int	get_max_bits(stack **a)
 	return (bits);
 }
 
-void	complex_sort(stack **a, stack **b)
+void	complex_sort(stack **a, stack **b, t_bench *bench)
 {
 	int	max_bits;
 	int	bit_pos;
@@ -109,13 +109,13 @@ void	complex_sort(stack **a, stack **b)
 		while (i < size)
 		{
 			if (((*a)->index >> bit_pos) & 1)
-				ra(a);
+				ra(a, bench);
 			else
-				pb(a, b);
+				pb(a, b, bench);
 			i++;
 		}
 		while (*b)
-			pa(a, b);
+			pa(a, b, bench);
 		bit_pos++;
 	}
 }

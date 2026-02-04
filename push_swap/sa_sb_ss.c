@@ -6,48 +6,46 @@
 /*   By: ybarakat <ybarakat@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 17:16:17 by ybarakat          #+#    #+#             */
-/*   Updated: 2026/02/03 12:01:02 by ybarakat         ###   ########.fr       */
+/*   Updated: 2026/02/04 18:11:24 by ybarakat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sa(stack **a)
+void	swap(stack **s)
 {
 	stack	*node;
 
-	if (!a || !*a || !(*a)->next)
+	if (!s || !*s || !(*s)->next)
 		return ;
-	node = (*a)->next;
-	(*a)->next = (*a)->next->next;
-	(*a)->prev = node;
-	if ((*a)->next != NULL)
-		(*a)->next->prev = *a;
-	node->next = *a;
+	node = (*s)->next;
+	(*s)->next = (*s)->next->next;
+	(*s)->prev = node;
+	if ((*s)->next != NULL)
+		(*s)->next->prev = *s;
+	node->next = *s;
 	node->prev = NULL;
-	(*a) = node;
+	(*s) = node;
+}
+
+void	sa(stack **a, t_bench *bench)
+{
+	swap(a);
 	write (1, "sa\n", 3);
+	bench -> sa++;
 }
 
-void	sb(stack **b)
+void	sb(stack **b, t_bench *bench)
 {
-	stack	*node;
-
-	if (!b || !*b || !(*b)->next)
-		return ;
-	node = (*b)->next;
-	(*b)->next = (*b)->next->next;
-	(*b)->prev = node;
-	if ((*b)->next != NULL)
-		(*b)->next->prev = *b;
-	node->next = *b;
-	node->prev = NULL;
-	(*b) = node;
+	swap(b);
 	write (1, "sb\n", 3);
+	bench -> sb++;
 }
 
-void	ss(stack **a, stack **b)
+void	ss(stack **a, stack **b, t_bench *bench)
 {
-	sa(a);
-	sb(b);
+	swap(a);
+	swap(b);
+	write (1, "ss\n", 3);
+	bench -> ss++;
 }
