@@ -6,7 +6,7 @@
 /*   By: sabaraka <sabaraka@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 18:10:48 by sabaraka          #+#    #+#             */
-/*   Updated: 2026/02/03 06:08:39 by sbarakat         ###   ########.fr       */
+/*   Updated: 2026/02/04 00:40:06 by sbarakat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,11 +75,15 @@ int	check_error(int c, char **arg)
 {
 	if (c == 1) //no args
 		return (-1);
-	if (c == 2)
-		return (-1);
+	//if (c == 2)
+		//return (-1);
 	if (check_dup(c, arg) == 1) //chec dup
 		return (0);
 	if (is_out_of_range(c, arg) == 1)
 		return (0);
+	if (str_err(c, arg) == 1)
+		return (0);
+	if (c == 2)
+		return (-1);
 	return (1); // last error (out of range)
 }

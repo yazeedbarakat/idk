@@ -6,7 +6,7 @@
 /*   By: ybarakat <yazeed.barakat@learner.42.tech>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 23:57:04 by ybarakat          #+#    #+#             */
-/*   Updated: 2026/02/03 19:04:06 by ybarakat         ###   ########.fr       */
+/*   Updated: 2026/02/04 17:34:43 by ybarakat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,19 @@ void	sort_extend(stack **a, stack **b, int start, int end)
 {
 	int	size;
 	int	pushed;
-	int	value;
 	int	mid;
+	int	ind;
 
 	size = get_size(*a);
 	pushed = 0;
 	mid = (start + end) / 2;
 	while (size-- && pushed < (end - start))
 	{
-		value = (*a)->value;
-		if (value >= start && value < end)
+		ind = (*a)->index;
+		if (ind >= start && ind < end)
 		{
 			pb(a, b);
-			if (value < mid)
+			if (ind < mid)
 				rb(b);
 			pushed++;
 		}
@@ -43,8 +43,8 @@ void	push_back_b(stack **a, stack **b)
 	int	pos;
 	int	size;
 
-	max = get_max(b);
 	size = get_size(*b);
+	max = get_max(b);
 	pos = get_pos(b, max);
 	if (pos > size / 2)
 	{
@@ -70,17 +70,18 @@ void	medium_sort(stack **a, stack **b)
 
 	if (!a || !*a)
 		return ;
+	index_stack(*a);
 	if (get_size(*a) <= 100)
 		ranges = 5;
 	else
-		ranges = 13;
-	range_size = (get_max(a) - get_min(a) + 1) / ranges;
+		ranges = 9;
+	range_size = get_size(*a) / ranges;
 	if (range_size < 1)
 		range_size = 1;
 	i = 0;
 	while (i < ranges)
 	{
-		start = get_min(a) + (i * range_size);
+		start = i * range_size;
 		end = start + range_size;
 		sort_extend(a, b, start, end);
 		i++;

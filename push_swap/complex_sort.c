@@ -6,11 +6,35 @@
 /*   By: ybarakat <ybarakat@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 20:16:34 by ybarakat          #+#    #+#             */
-/*   Updated: 2026/02/03 12:31:58 by ybarakat         ###   ########.fr       */
+/*   Updated: 2026/02/04 14:00:25 by ybarakat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void    index_stack(stack *a)
+{
+        stack   *temp;
+        stack   *min;
+        int     ind;
+
+        ind = 0;
+        while (1)
+        {
+                temp = a;
+                min = NULL;
+                while (temp)
+                {
+                        if (temp->index == -1 && (!min || temp->value < min->value))
+                                min = temp;
+                        temp = temp->next;
+                }
+                if (!min)
+                        break;
+                min->index = ind;
+                ind++;
+        }
+}
 
 int	get_bit(int num, int pos)
 {
@@ -34,7 +58,7 @@ int	get_size(stack *a)
 	return (s_size);
 }
 
-int	get_max_value(stack **a)
+int	get_max_index(stack **a)
 {
 	int	max;
 	stack	*temp;
@@ -42,11 +66,11 @@ int	get_max_value(stack **a)
 	if (!a || !*a)
 		return (0);
 	temp = *a;
-	max = temp->value;
+	max = temp->index;
 	while (temp)
 	{
-		if (temp->value > max)
-			max = temp->value;
+		if (temp->index > max)
+			max = temp->index;
 		temp = temp->next;
 	}
 	return (max);
@@ -58,7 +82,7 @@ int	get_max_bits(stack **a)
 	int	bits;
 
 	bits = 0;
-	max = get_max_value(a);
+	max = get_max_index(a);
 	if (max == 0)
 		return (1);
 	while ((max >> bits) != 0)
@@ -75,6 +99,7 @@ void	complex_sort(stack **a, stack **b)
 
 	if (!a || !*a)
 		return ;
+	index_stack(*a);
 	max_bits = get_max_bits(a);
 	bit_pos = 0;
 	while (bit_pos < max_bits)
@@ -83,7 +108,7 @@ void	complex_sort(stack **a, stack **b)
 		size = get_size(*a);
 		while (i < size)
 		{
-			if (((*a)->value >> bit_pos) & 1)
+			if (((*a)->index >> bit_pos) & 1)
 				ra(a);
 			else
 				pb(a, b);

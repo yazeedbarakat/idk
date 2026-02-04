@@ -28,7 +28,8 @@ SRCS = \
        make_stack.c\
        pa_pb.c\
        ra_rb_rr.c\
-       sa_sb_ss.c
+       sa_sb_ss.c\
+       str_err.c
 
 # ===============================
 # Object files

@@ -6,7 +6,7 @@
 /*   By: sbarakat <sbarakat@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 11:31:26 by sbarakat          #+#    #+#             */
-/*   Updated: 2026/02/03 06:00:24 by sbarakat         ###   ########.fr       */
+/*   Updated: 2026/02/04 14:13:51 by ybarakat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,14 +71,16 @@ stack	*make_stack(int c, char **arg)
 	if (!p)
 		return (NULL);//
 	p -> value = atoi(arg[i++]);
+	p -> index = -1;
 	p -> prev = NULL;
 	p -> next = NULL;
 	while (i < c)
 	{
 		l = (stack *)malloc(sizeof (stack));
 		if (!l)
-			return (NULL);//
+			return (NULL);
 		l -> value = atoi(arg[i++]);
+		l -> index = -1;
 		p -> next = l;
 		l -> prev = p;
 		p = l;

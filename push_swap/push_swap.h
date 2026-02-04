@@ -6,7 +6,7 @@
 /*   By: ybarakat <ybarakat@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 16:30:47 by ybarakat          #+#    #+#             */
-/*   Updated: 2026/02/03 18:48:08 by ybarakat         ###   ########.fr       */
+/*   Updated: 2026/02/04 17:35:35 by ybarakat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PUSH_SWAP_H
@@ -19,10 +19,32 @@
 typedef struct s_stack
 {
 	int		value;
+	int		index;
 	struct s_stack	*prev;
 	struct s_stack	*next;
 }	stack;
 
+typedef struct ben
+{
+	int	sa;
+	int	sb;
+	int	ss;
+	int	pa;
+	int	pb;
+	int	ra;
+	int	rb;
+	int	rr;
+	int	rra;
+	int	rrb;
+	int	rrr;
+	double	disorder;
+	char	*strategy;
+}	t_bench;
+typedef struct r
+{
+	int	start;
+	int	end;
+}	t_range;
 stack	*make_stack(int c, char **arg);
 int     ft_strncmp(const char *s1, const char *s2, size_t n);
 int     check_error(int c, char **arg);
@@ -30,6 +52,7 @@ char    *ft_itoa(int n);
 int     len(const char *str);
 int    *bench_stat_f(stack **a, stack **b, int bench, int op, int end);
 void	print_bench(int *p);
+void    index_stack(stack *a);
 int	bench(char **arg);
 int	num_of_flags(int c, char **arg);
 int	check_dup(int c, char **arg);
@@ -59,5 +82,6 @@ void    rr(stack **a, stack **b);
 void    rra(stack **a);
 void    rrb(stack **b);
 void    rrr(stack **a, stack **b);
+int	str_err(int c, char **arg);
 
 #endif
