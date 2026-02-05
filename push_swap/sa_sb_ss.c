@@ -6,15 +6,15 @@
 /*   By: ybarakat <ybarakat@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 17:16:17 by ybarakat          #+#    #+#             */
-/*   Updated: 2026/02/04 18:11:24 by ybarakat         ###   ########.fr       */
+/*   Updated: 2026/02/05 11:39:08 by ybarakat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	swap(stack **s)
+void	swap(t_stack **s)
 {
-	stack	*node;
+	t_stack	*node;
 
 	if (!s || !*s || !(*s)->next)
 		return ;
@@ -28,24 +28,24 @@ void	swap(stack **s)
 	(*s) = node;
 }
 
-void	sa(stack **a, t_bench *bench)
+void	sa(t_stack **a, t_bench *bench)
 {
 	swap(a);
-	write (1, "sa\n", 3);
-	bench -> sa++;
+	write(1, "sa\n", 3);
+	bench->sa++;
 }
 
 void	sb(stack **b, t_bench *bench)
 {
 	swap(b);
-	write (1, "sb\n", 3);
-	bench -> sb++;
+	write(1, "sb\n", 3);
+	bench->sb++;
 }
 
 void	ss(stack **a, stack **b, t_bench *bench)
 {
 	swap(a);
 	swap(b);
-	write (1, "ss\n", 3);
-	bench -> ss++;
+	write(1, "ss\n", 3);
+	bench->ss++;
 }

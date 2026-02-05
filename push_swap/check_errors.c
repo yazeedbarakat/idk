@@ -11,8 +11,8 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 #include <stddef.h>
+#include <stdio.h>
 
 int	out_of_pos(int c, char **arg)
 {
@@ -28,12 +28,12 @@ int	out_of_pos(int c, char **arg)
 		if ((len(arg[i]) > 10) && (arg[i][0] != '-'))
 			return (1);
 		if ((len(arg[i]) == 10) && arg[i][0] != '-')
-		while (arg[i][j])
-		{
-			if (arg[i][j] > x[j])
-				return (1);
-			j++;
-		}
+			while (arg[i][j])
+			{
+				if (arg[i][j] > x[j])
+					return (1);
+				j++;
+			}
 		i++;
 	}
 	return (0);
@@ -53,13 +53,13 @@ int	out_of_neg(int c, char **arg)
 		if (len(arg[i]) > 11)
 			return (1);
 		if ((len(arg[i]) == 11) && (arg[i][0] == '-'))
-		while (arg[i][j])
-		{
-			if (arg[i][j] > x[j])
-				return (1);
-			j++;
-		}
-		i++;	
+			while (arg[i][j])
+			{
+				if (arg[i][j] > x[j])
+					return (1);
+				j++;
+			}
+		i++;
 	}
 	return (0);
 }
@@ -73,11 +73,11 @@ int	is_out_of_range(int c, char **arg)
 
 int	check_error(int c, char **arg)
 {
-	if (c == 1) //no args
+	if (c == 1) // no args
 		return (-1);
-	//if (c == 2)
-		//return (-1);
-	if (check_dup(c, arg) == 1) //chec dup
+	// if (c == 2)
+	// return (-1);
+	if (check_dup(c, arg) == 1) // chec dup
 		return (0);
 	if (is_out_of_range(c, arg) == 1)
 		return (0);

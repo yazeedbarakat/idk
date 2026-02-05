@@ -9,8 +9,8 @@
 /*   Updated: 2026/02/04 20:02:42 by ybarakat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdlib.h>
 #include "push_swap.h"
+#include <stdlib.h>
 
 static int	count_len(long n)
 {
@@ -33,12 +33,12 @@ char	*ft_ftoa(float n)
 	int	y;
 
 	x = n * 100;
-	write (2, ft_itoa(n), 2);
-	write (2, ".", 1);
+	write(2, ft_itoa(n), 2);
+	write(2, ".", 1);
 	x = x * 100;
 	y = n * 10000;
 	y = y - x;
-	write (2, ft_itoa(y), 2);
+	write(2, ft_itoa(y), 2);
 }
 
 char	*ft_itoa(int n)

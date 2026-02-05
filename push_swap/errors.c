@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
-#include <stdio.h>
 #include <stddef.h>
+#include <stdio.h>
 
 int	cmp(char *str)
 {
@@ -21,7 +21,8 @@ int	cmp(char *str)
 		return (1);
 	else if (ft_strncmp(str, "--complex", 8) == 0)
 		return (1);
-	else if (ft_strncmp(str, "--medium", 8) == 0) //change to else = error if there are no flags left
+	else if (ft_strncmp(str, "--medium", 8) == 0)
+		// change to else = error if there are no flags left
 		return (1);
 	else if (ft_strncmp(str, "--bench", 8) == 0)
 		return (1);
@@ -33,11 +34,11 @@ int	num_of_flags(int c, char **arg)
 	int	one;
 	int	two;
 
-	two = 0;//uninitalized error
+	two = 0; // uninitalized error
 	one = cmp(arg[1]);
 	if (c > 2)
 	{
-		two = cmp(arg[2]);//if c ==2 segfault
+		two = cmp(arg[2]); // if c ==2 segfault
 		if (one && two)
 			return (2);
 		if (one)
@@ -72,7 +73,7 @@ int	*to_arr(int c, char **arg)
 	n = num_of_flags(c, arg);
 	i = 1 + n;
 	j = 0;
-	p = (int *)malloc(sizeof (int) * (c - 1 - n));
+	p = (int *)malloc(sizeof(int) * (c - 1 - n));
 	while (arg[i])
 	{
 		if (!is_dig(arg[i]))
@@ -94,10 +95,10 @@ int	check_dup(int c, char **arg)
 	if (p == NULL)
 		return (1);
 	n = num_of_flags(c, arg);
-	while (i < (c - n - 2)) //so it doesnt compare the last el with it self(-2)
+	while (i < (c - n - 2)) // so it doesnt compare the last el with it self(-2)
 	{
-		j = i + 1; //segfaualt when c == 2
-		while (j < (c - n - 1 ))
+		j = i + 1; // segfaualt when c == 2
+		while (j < (c - n - 1))
 		{
 			if (p[i] == p[j])
 			{
@@ -108,6 +109,6 @@ int	check_dup(int c, char **arg)
 		}
 		i++;
 	}
-	free (p);
+	free(p);
 	return (0);
 }

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   simple_sort.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybarakat <ybarakat@learner.42.tech>        +#+  +:+       +#+        */
+/*   By: sabaraka <sabaraka@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/01 15:10:32 by ybarakat          #+#    #+#             */
-/*   Updated: 2026/02/04 18:12:51 by ybarakat         ###   ########.fr       */
+/*   Created: 2026/02/01 15:10:32 by sabaraka          #+#    #+#             */
+/*   Updated: 2026/02/05 11:49:49 by ybarakat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	simple_sort(stack **a, stack **b, t_bench *bench)
+void	simple_sort(t_stack **a, t_stack **b, t_bench *bench)
 {
 	int	min;
 	int	pos;

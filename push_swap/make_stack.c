@@ -6,13 +6,13 @@
 /*   By: sbarakat <sbarakat@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 11:31:26 by sbarakat          #+#    #+#             */
-/*   Updated: 2026/02/04 14:13:51 by ybarakat         ###   ########.fr       */
+/*   Updated: 2026/02/05 11:48:18 by ybarakat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static	int	pown(int power)
+static int	pown(int power)
 {
 	int	sum;
 
@@ -60,31 +60,31 @@ int	atoi(const char *str)
 
 stack	*make_stack(int c, char **arg)
 {
-	stack	*p;
-	stack	*l;
-	stack	*top;
-	int	i;
+	t_stack	*p;
+	t_stack	*l;
+	t_stack	*top;
+	int		i;
 
-	i = num_of_flags(c, arg) + 1;//we skip file name and first el
-	p = (stack *)malloc(sizeof (stack));//here we can add a top pointer
+	i = num_of_flags(c, arg) + 1;       // we skip file name and first el
+	p = (t_stack *)malloc(sizeof(t_stack)); // here we can add a top pointer
 	top = p;
 	if (!p)
-		return (NULL);//
-	p -> value = atoi(arg[i++]);
-	p -> index = -1;
-	p -> prev = NULL;
-	p -> next = NULL;
+		return (NULL); //
+	p->value = atoi(arg[i++]);
+	p->index = -1;
+	p->prev = NULL;
+	p->next = NULL;
 	while (i < c)
 	{
-		l = (stack *)malloc(sizeof (stack));
+		l = (t_stack *)malloc(sizeof(t_stack));
 		if (!l)
 			return (NULL);
-		l -> value = atoi(arg[i++]);
-		l -> index = -1;
-		p -> next = l;
-		l -> prev = p;
+		l->value = atoi(arg[i++]);
+		l->index = -1;
+		p->next = l;
+		l->prev = p;
 		p = l;
 	}
-	l -> next = NULL;
+	l->next = NULL;
 	return (top);
 }

@@ -6,18 +6,18 @@
 /*   By: ybarakat <ybarakat@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 13:15:26 by ybarakat          #+#    #+#             */
-/*   Updated: 2026/02/03 12:49:48 by ybarakat         ###   ########.fr       */
+/*   Updated: 2026/02/05 12:01:07 by ybarakat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-double	disorder(stack **a)
+double	disorder(t_stack **a)
 {
 	double	mistake;
 	double	total_pairs;
-	stack	*iter;
-	stack	*cur;
+	t_stack	*iter;
+	t_stack	*cur;
 
 	if (!a || !(*a) || !(*a)->next)
 		return (0);

@@ -6,52 +6,48 @@
 /*   By: ybarakat <ybarakat@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 15:19:12 by ybarakat          #+#    #+#             */
-/*   Updated: 2026/02/03 12:02:42 by ybarakat         ###   ########.fr       */
+/*   Updated: 2026/02/05 11:43:06 by ybarakat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ra(stack **a)
+void	rotate(t_stack **s)
 {
-	stack	*top;
-	stack	*last;
+	t_stack	*top;
+	t_stack	*last;
 
-	if (!a || !*a || !(*a)->next)
+	if (!s || !*s || !(*s)->next)
 		return ;
-	top = *a;
-	*a = (*a)->next;
-	(*a)->prev = NULL;
-	last = *a;
+	top = *s;
+	*s = (*s)->next;
+	(*s)->prev = NULL;
+	last = *s;
 	while (last->next)
 		last = last->next;
 	last->next = top;
 	top->prev = last;
 	top->next = NULL;
-	write (1, "ra\n", 3);
 }
 
-void	rb(stack **b)
+void	ra(t_stack **a, t_bench *bench)
 {
-	stack  *top;
-	stack  *last;
-	
-	if (!b || !*b || !(*b)->next)
-		return ;
-	top = *b;
-	*b = (*b)->next;
-	(*b)->prev = NULL;
-	last = *b;
-	while (last->next)
-		last = last->next;
-	last->next = top;
-	top->prev = last;
-	top->next = NULL;
-	write (1, "rb\n", 3);
+	rotate(a);
+	write(1, "ra\n", 3);
+	bench->ra++;
 }
 
-void	rr(stack **a, stack **b)
+void	rb(t_stack **b, t_bench *bench)
 {
-	ra(a);
-	rb(b);
+	rotate(b);
+	write(1, "rb\n", 3);
+	bench->rb++;
+}
+
+void	rr(t_stack **a, t_stack **b, t_bench *bench)
+{
+	rotate(a);
+	rotate(b);
+	write(1, "rr\n", 3);
+	bench->rr++;
 }

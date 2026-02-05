@@ -6,45 +6,40 @@
 /*   By: ybarakat <ybarakat@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 20:16:34 by ybarakat          #+#    #+#             */
-/*   Updated: 2026/02/04 18:11:53 by ybarakat         ###   ########.fr       */
+/*   Updated: 2026/02/05 12:02:42 by ybarakat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void    index_stack(stack *a)
+void	index_stack(t_stack *a)
 {
-        stack   *temp;
-        stack   *min;
-        int     ind;
+	t_stack	*temp;
+	t_stack	*min;
+	int		ind;
 
-        ind = 0;
-        while (1)
-        {
-                temp = a;
-                min = NULL;
-                while (temp)
-                {
-                        if (temp->index == -1 && (!min || temp->value < min->value))
-                                min = temp;
-                        temp = temp->next;
-                }
-                if (!min)
-                        break;
-                min->index = ind;
-                ind++;
-        }
+	ind = 0;
+	while (1)
+	{
+		temp = a;
+		min = NULL;
+		while (temp)
+		{
+			if (temp->index == -1 && (!min || temp->value < min->value))
+				min = temp;
+			temp = temp->next;
+		}
+		if (!min)
+			break ;
+		min->index = ind;
+		ind++;
+	}
 }
 
-int	get_bit(int num, int pos)
+int	get_size(t_stack *a)
 {
-	return ((num >> pos) & 1);
-}
-
-int	get_size(stack *a)
-{
-	stack	*temp;
-	int	s_size;
+	t_stack	*temp;
+	int		s_size;
 
 	if (!a)
 		return (0);
@@ -58,10 +53,10 @@ int	get_size(stack *a)
 	return (s_size);
 }
 
-int	get_max_index(stack **a)
+int	get_max_index(t_stack **a)
 {
-	int	max;
-	stack	*temp;
+	int		max;
+	t_stack	*temp;
 
 	if (!a || !*a)
 		return (0);
@@ -76,7 +71,7 @@ int	get_max_index(stack **a)
 	return (max);
 }
 
-int	get_max_bits(stack **a)
+int	get_max_bits(t_stack **a)
 {
 	int	max;
 	int	bits;
@@ -90,7 +85,7 @@ int	get_max_bits(stack **a)
 	return (bits);
 }
 
-void	complex_sort(stack **a, stack **b, t_bench *bench)
+void	complex_sort(t_stack **a, t_stack **b, t_bench *bench)
 {
 	int	max_bits;
 	int	bit_pos;
@@ -106,13 +101,12 @@ void	complex_sort(stack **a, stack **b, t_bench *bench)
 	{
 		i = 0;
 		size = get_size(*a);
-		while (i < size)
+		while (i++ < size)
 		{
 			if (((*a)->index >> bit_pos) & 1)
 				ra(a, bench);
 			else
 				pb(a, b, bench);
-			i++;
 		}
 		while (*b)
 			pa(a, b, bench);

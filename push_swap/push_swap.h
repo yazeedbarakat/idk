@@ -6,82 +6,77 @@
 /*   By: ybarakat <ybarakat@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 16:30:47 by ybarakat          #+#    #+#             */
-/*   Updated: 2026/02/04 17:35:35 by ybarakat         ###   ########.fr       */
+/*   Updated: 2026/02/05 12:01:39 by ybarakat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-#include <stddef.h>
-#include <stdlib.h>
-#include <unistd.h>
+# include <stddef.h>
+# include <stdlib.h>
+# include <unistd.h>
 
 typedef struct s_stack
 {
-	int		value;
-	int		index;
+	int				value;
+	int				index;
 	struct s_stack	*prev;
 	struct s_stack	*next;
-}	stack;
+}					t_stack;
 
 typedef struct ben
 {
-	int	sa;
-	int	sb;
-	int	ss;
-	int	pa;
-	int	pb;
-	int	ra;
-	int	rb;
-	int	rr;
-	int	rra;
-	int	rrb;
-	int	rrr;
-	double	disorder;
-	char	*strategy;
-}	t_bench;
+	int				sa;
+	int				sb;
+	int				ss;
+	int				pa;
+	int				pb;
+	int				ra;
+	int				rb;
+	int				rr;
+	int				rra;
+	int				rrb;
+	int				rrr;
+	double			disorder;
+	char			*strategy;
+}					t_bench;
 typedef struct r
 {
-	int	start;
-	int	end;
-}	t_range;
-stack	*make_stack(int c, char **arg);
-int     ft_strncmp(const char *s1, const char *s2, size_t n);
-int     check_error(int c, char **arg);
-char    *ft_itoa(int n);
-int     len(const char *str);
-int    *bench_stat_f(stack **a, stack **b, int bench, int op, int end);
-void	print_bench(int *p);
-void    index_stack(stack *a);
-int	bench(char **arg);
-int	num_of_flags(int c, char **arg);
-int	check_dup(int c, char **arg);
-int             get_size(stack *s);
-int             get_min(stack **s);
-int             get_max(stack **s);
-int             get_pos(stack **s, int val);
-double  disorder(stack **a);
-int             ft_sqrt(int n);
+	int start;
+	int end;
+}					t_range;
+t_stack				*make_stack(int c, char **arg);
+int					ft_strncmp(const char *s1, const char *s2, size_t n);
+int					check_error(int c, char **arg);
+char				*ft_itoa(int n);
+int					len(const char *str);
+void				print_bench(int *p);
+void				index_stack(t_stack *a);
+int					bench(char **arg);
+int					num_of_flags(int c, char **arg);
+int					check_dup(int c, char **arg);
+int					get_size(t_stack *s);
+int					get_min(t_stack **s);
+int					get_max(t_stack **s);
+int					get_pos(t_stack **s, int val);
+double				disorder(t_stack **a);
 
-void    simple_sort(stack **a, stack **b);
-void    medium_sort(stack **a, stack **b);
-void    complex_sort(stack **a, stack **b);
-void    adaptive_sort(stack **a, stack **b);
+void				simple_sort(t_stack **a, t_stack **b, t_bench *bench);
+void				medium_sort(t_stack **a, t_stack **b, t_bench *bench);
+void				complex_sort(t_stack **a, t_stack **b, t_bench *bench);
+void				adaptive_sort(t_stack **a, t_stack **b, t_bench *bench);
 
-void    sort_extend(stack **a, stack **b, int start, int end);
-void    push_back_b(stack **a, stack **b);
-
-void    sa(stack **a);
-void    sb(stack **b);
-void    ss(stack **a, stack **b);
-void    pa(stack **a, stack **b);
-void    pb(stack **a, stack **b);
-void    ra(stack **a);
-void    rb(stack **b);
-void    rr(stack **a, stack **b);
-void    rra(stack **a);
-void    rrb(stack **b);
-void    rrr(stack **a, stack **b);
-int	str_err(int c, char **arg);
+void				sa(t_stack **a, t_bench *bench);
+void				sb(t_stack **b, t_bench *bench);
+void				ss(t_stack **a, t_stack **b, t_bench *bench);
+void				pa(t_stack **a, t_stack **b, t_bench *bench);
+void				pb(t_stack **a, t_stack **b, t_bench *bench);
+void				ra(t_stack **a, t_bench *bench);
+void				rb(t_stack **b, t_bench *bench);
+void				rr(t_stack **a, t_stack **b, t_bench *bench);
+void				rra(t_stack **a, t_bench *bench);
+void				rrb(t_stack **b, t_bench *bench);
+void				rrr(t_stack **a, t_stack **b, t_bench *bench);
+int					str_err(int c, char **arg);
 
 #endif

@@ -1,4 +1,5 @@
 #include "push_swap.h"
+
 int	is_str(char c)
 {
 	if (c >= '0' && c <= '9')

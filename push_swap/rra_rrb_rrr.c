@@ -6,48 +6,45 @@
 /*   By: ybarakat <yazeed.barakat@learner.42.tech>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 15:48:48 by ybarakat          #+#    #+#             */
-/*   Updated: 2026/02/03 12:03:59 by ybarakat         ###   ########.fr       */
+/*   Updated: 2026/02/05 11:43:47 by ybarakat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	rra(stack **a)
+void	reverse_rotate(t_stack **s)
 {
-	stack	*last;
+	t_stack	*last;
 
-	if (!a || !*a || !(*a)->next)
+	if (!s || !*s || !(*s)->next)
 		return ;
-	last = *a;
+	last = *s;
 	while (last->next)
 		last = last->next;
 	last->prev->next = NULL;
-	last->next = *a;
+	last->next = *s;
 	last->prev = NULL;
-	(*a)->prev = last;
-	(*a) = last;
-	write (1, "rra\n", 4);
+	(*s)->prev = last;
+	(*s) = last;
+}
+
+void	rra(t_stack **a, t_bench *bench)
+{
+	reverse_rotate(a);
+	write(1, "rra\n", 4);
+	bench->rra++;
 }
 
 void	rrb(stack **b)
 {
-	stack	*last;
-
-	if (!b || !*b || !(*b)->next)
-		return ;
-	last = *b;
-	while (last->next)
-		last = last->next;
-	last->prev->next = NULL;
-	last->next = *b;
-	last->prev = NULL;
-	(*b)->prev = last;
-	(*b) = last;
-	write (1, "rrb\n", 4);
+	reverse_rotate(b);
+	write(1, "rrb\n", 4);
+	bench->rrb++;
 }
 
-void	rrr(stack **a, stack **b)
+void	rrr(t_stack **a, t_stack **b, t_bench *bench)
 {
-	rra(a);
-	rrb(b);
+	reverse_rotate(a);
+	reverse_rotate(b);
+	bench->rrr++;
 }

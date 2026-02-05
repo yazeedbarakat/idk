@@ -6,16 +6,16 @@
 /*   By: ybarakat <yazeed.barakat@learner.42.tech>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 10:29:05 by ybarakat          #+#    #+#             */
-/*   Updated: 2026/02/01 15:23:52 by ybarakat         ###   ########.fr       */
+/*   Updated: 2026/02/05 11:50:49 by ybarakat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	get_max(stack **s)
+int	get_max(t_stack **s)
 {
-	stack	*temp;
-	int	max;
+	t_stack	*temp;
+	int		max;
 
 	temp = *s;
 	max = temp->value;
@@ -28,10 +28,10 @@ int	get_max(stack **s)
 	return (max);
 }
 
-int	get_min(stack **s)
+int	get_min(t_stack **s)
 {
-	stack	*temp;
-	int	min;
+	t_stack	*temp;
+	int		min;
 
 	temp = *s;
 	min = temp->value;
@@ -44,38 +44,19 @@ int	get_min(stack **s)
 	return (min);
 }
 
-int	get_pos(stack **s, int val)
+int	get_pos(t_stack **s, int val)
 {
-	stack	*temp;
-	int	pos;
+	t_stack	*temp;
+	int		pos;
 
 	temp = *s;
 	pos = 0;
 	while (temp)
 	{
 		if (temp->value == val)
-			break;
+			break ;
 		pos++;
 		temp = temp->next;
 	}
 	return (pos);
-}
-
-int	ft_sqrt(int n)
-{
-	int	x;
-	int	y;
-
-	if (n < 0)
-		return (0);
-	if (n == 0 || n == 1)
-		return (n);
-	x = n;
-	y = 1;
-	while (x > y)
-	{
-		x = (x + y) / 2;
-		y = n / x;
-	}
-	return (x);
 }
