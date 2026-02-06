@@ -6,7 +6,7 @@
 /*   By: ybarakat <yazeed.barakat@learner.42.tech>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 15:48:48 by ybarakat          #+#    #+#             */
-/*   Updated: 2026/02/05 11:43:47 by ybarakat         ###   ########.fr       */
+/*   Updated: 2026/02/06 14:57:45 by ybarakat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	rra(t_stack **a, t_bench *bench)
 	bench->rra++;
 }
 
-void	rrb(stack **b)
+void	rrb(t_stack **b, t_bench *bench)
 {
 	reverse_rotate(b);
 	write(1, "rrb\n", 4);
@@ -46,5 +46,6 @@ void	rrr(t_stack **a, t_stack **b, t_bench *bench)
 {
 	reverse_rotate(a);
 	reverse_rotate(b);
+	write (1, "rrr\n", 4);
 	bench->rrr++;
 }

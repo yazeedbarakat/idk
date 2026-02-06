@@ -1,16 +1,5 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: saed <marvin@42.fr>                        +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/16 15:02:14 by saed              #+#    #+#             */
-/*   Updated: 2026/02/04 20:02:42 by ybarakat         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+
 #include "push_swap.h"
-#include <stdlib.h>
 
 static int	count_len(long n)
 {
@@ -27,18 +16,20 @@ static int	count_len(long n)
 	return (len);
 }
 
-char	*ft_ftoa(float n)
+void	ft_ftoa(float n)
 {
 	int	x;
 	int	y;
 
 	x = n * 100;
-	write(2, ft_itoa(n), 2);
+	print_help(x);
 	write(2, ".", 1);
 	x = x * 100;
 	y = n * 10000;
 	y = y - x;
-	write(2, ft_itoa(y), 2);
+	print_help(y);
+	if (y % 100 == 0)
+		write (2, "0", 1);
 }
 
 char	*ft_itoa(int n)

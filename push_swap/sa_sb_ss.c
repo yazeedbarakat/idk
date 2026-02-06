@@ -6,7 +6,7 @@
 /*   By: ybarakat <ybarakat@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 17:16:17 by ybarakat          #+#    #+#             */
-/*   Updated: 2026/02/05 11:39:08 by ybarakat         ###   ########.fr       */
+/*   Updated: 2026/02/06 15:00:14 by ybarakat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,14 @@ void	sa(t_stack **a, t_bench *bench)
 	bench->sa++;
 }
 
-void	sb(stack **b, t_bench *bench)
+void	sb(t_stack **b, t_bench *bench)
 {
 	swap(b);
 	write(1, "sb\n", 3);
 	bench->sb++;
 }
 
-void	ss(stack **a, stack **b, t_bench *bench)
+void	ss(t_stack **a, t_stack **b, t_bench *bench)
 {
 	swap(a);
 	swap(b);

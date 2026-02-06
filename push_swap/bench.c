@@ -6,53 +6,66 @@
 /*   By: ybarakat <ybarakat@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 15:52:21 by ybarakat          #+#    #+#             */
-/*   Updated: 2026/02/05 12:10:27 by ybarakat         ###   ########.fr       */
+/*   Updated: 2026/02/06 19:09:45 by ybarakat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	print_bench(t_bench bench)
+void	print_help(int num)
+{
+	char	*str;
+
+	str = ft_itoa(num);
+	write (2, str, len(str));
+	free(str);
+}
+
+void	print_bench(t_bench *bench)
 {
 	int	total;
 
-	write(2, "[bench] disorder: ", 21);
+	write(2, "[bench] disorder: ", 19);
 	ft_ftoa(bench->disorder);
-	write(2, "[bench] strategy: ", 21);
+	write(2, "%\n", 2);
+	write(2, "[bench] strategy: ", 19);
 	write(2, bench->strategy, len(bench->strategy));
+	write(2, "\n", 1);
 	total = 0 + bench->sa + bench->sb + bench->ss;
 	total += bench->ra + bench->rb + bench->rr;
 	total += bench->pa + bench->pb;
 	total += bench->rra + bench->rrb + bench->rrb;
-	write(2, "[bench] total_ops:  ", 22);
-	write(2, ft_itoa(total), len(ft_itoa(total)));
+	write(2, "[bench] total_ops:  ", 21);
+	print_help(total);
+	write(2, "\n", 1);
 	print_bench_2(bench);
 }
 
-void	print_bench_2(t_bench bench)
+void	print_bench_2(t_bench *bench)
 {
 	write(2, "[bench] sa:  ", 13);
-	write(2, ft_itoa(bench->sa), len(ft_itoa(bench->sa)));
+	print_help(bench->sa);
 	write(2, "  sb:  ", 7);
-	write(2, ft_itoa(bench->sb), len(ft_itoa(bench->sb)));
+	print_help(bench->sb);
 	write(2, "  ss:  ", 7);
-	write(2, ft_itoa(bench->ss), len(ft_itoa(bench->ss)));
+	print_help(bench->ss);
 	write(2, "  pa:  ", 7);
-	write(2, ft_itoa(bench->pa), len(ft_itoa(bench->pa)));
+	print_help(bench->pa);
 	write(2, "  pb:  ", 7);
-	write(2, ft_itoa(bench->pb), len(ft_itoa(bench->pb)));
+	print_help(bench->pb);
 	write(2, "\n[bench] ra:  ", 15);
-	write(2, ft_itoa(bench->ra), len(ft_itoa(bench->ra)));
+	print_help(bench->ra);
 	write(2, "  rb:  ", 7);
-	write(2, ft_itoa(bench->rb), len(ft_itoa(bench->rb)));
+	print_help(bench->rb);
 	write(2, "  rr:  ", 7);
-	write(2, ft_itoa(bench->rr), len(ft_itoa(bench->rr)));
+	print_help(bench->rr);
 	write(2, "  rra:  ", 8);
-	write(2, ft_itoa(bench->rra), len(ft_itoa(bench->rra)));
+	print_help(bench->rra);
 	write(2, "  rrb:  ", 8);
-	write(2, ft_itoa(bench->rrb), len(ft_itoa(bench->rrb)));
+	print_help(bench->rrb);
 	write(2, "  rrr:  ", 8);
-	write(2, ft_itoa(bench->rrr), len(ft_itoa(bench->rrr)));
+	print_help(bench->rrr);
+	write(2, "\n", 1);
 }
 
 t_bench	*make_bench(void)
@@ -62,6 +75,18 @@ t_bench	*make_bench(void)
 	bench = malloc(sizeof(t_bench));
 	if (!bench)
 		return (NULL);
-	*bench = (t_bench *){0};
+	bench->sa = 0;
+	bench->sb = 0;
+	bench->ss = 0;
+	bench->pa = 0;
+	bench->pb = 0;
+	bench->ra = 0;
+	bench->rb = 0;
+	bench->rr = 0;
+	bench->rra = 0;
+	bench->rrb = 0;
+	bench->rrr = 0;
+	bench->strategy = "Adaptive";
+	bench->active = 0;
 	return (bench);
 }

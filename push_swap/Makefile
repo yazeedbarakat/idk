@@ -29,7 +29,8 @@ SRCS = \
        pa_pb.c\
        ra_rb_rr.c\
        sa_sb_ss.c\
-       str_err.c
+       str_err.c\
+       bench.c
 
 # ===============================
 # Object files

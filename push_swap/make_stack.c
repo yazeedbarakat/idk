@@ -6,7 +6,7 @@
 /*   By: sbarakat <sbarakat@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 11:31:26 by sbarakat          #+#    #+#             */
-/*   Updated: 2026/02/05 11:48:18 by ybarakat         ###   ########.fr       */
+/*   Updated: 2026/02/06 19:35:37 by ybarakat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,18 +58,18 @@ int	atoi(const char *str)
 	return (neg * sum);
 }
 
-stack	*make_stack(int c, char **arg)
+t_stack	*make_stack(int c, char **arg)
 {
 	t_stack	*p;
 	t_stack	*l;
 	t_stack	*top;
 	int		i;
 
-	i = num_of_flags(c, arg) + 1;       // we skip file name and first el
-	p = (t_stack *)malloc(sizeof(t_stack)); // here we can add a top pointer
+	i = num_of_flags(c, arg) + 1;
+	p = (t_stack *)malloc(sizeof(t_stack));
 	top = p;
 	if (!p)
-		return (NULL); //
+		return (NULL);
 	p->value = atoi(arg[i++]);
 	p->index = -1;
 	p->prev = NULL;

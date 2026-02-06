@@ -6,13 +6,13 @@
 /*   By: ybarakat <yazeed.barakat@learner.42.tech>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 23:57:04 by ybarakat          #+#    #+#             */
-/*   Updated: 2026/02/05 11:44:59 by ybarakat         ###   ########.fr       */
+/*   Updated: 2026/02/06 19:34:17 by ybarakat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sort_extend(t_stack **a, t_stack **b, t_range range, t_bench bench)
+void	sort_extend(t_stack **a, t_stack **b, t_range *range, t_bench *bench)
 {
 	int	size;
 	int	pushed;
@@ -37,7 +37,7 @@ void	sort_extend(t_stack **a, t_stack **b, t_range range, t_bench bench)
 	}
 }
 
-void	push_back_b(t_stack **a, t_stack **b, t_bench bench)
+void	push_back_b(t_stack **a, t_stack **b, t_bench *bench)
 {
 	int	max;
 	int	pos;
@@ -69,12 +69,12 @@ void	medium_sort(t_stack **a, t_stack **b, t_bench *bench)
 
 	range = malloc(sizeof(t_range));
 	if (!a || !(*a) || !range)
-		return (NULL);
+		return ;
 	index_stack(*a);
 	if (get_size(*a) <= 100)
 		ranges = 5;
 	else
-		ranges = 9;
+		ranges = 10;
 	range_size = get_size(*a) / ranges;
 	if (range_size < 1)
 		range_size = 1;
@@ -87,4 +87,5 @@ void	medium_sort(t_stack **a, t_stack **b, t_bench *bench)
 	}
 	while (get_size(*b) > 0)
 		push_back_b(a, b, bench);
+	free(range);
 }
