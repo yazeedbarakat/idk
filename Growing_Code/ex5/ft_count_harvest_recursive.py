@@ -6,7 +6,7 @@
 #    By: ybarakat <ybarakat@learner.42.tech>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/09 23:11:57 by ybarakat          #+#    #+#              #
-#    Updated: 2026/02/09 23:22:20 by ybarakat         ###   ########.fr        #
+#    Updated: 2026/02/10 00:28:55 by ybarakat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ def ft_count_harvest_recursive():
     helper(duh, 1)
 
 def helper(duh, i):
-    if(i <= duh):
+    if i <= duh:
         print("Day", i)
         helper(duh, i + 1)
     else:
