@@ -6,9 +6,9 @@
 #    By: ybarakat <ybarakat@learner.42.tech>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/09 21:28:52 by ybarakat          #+#    #+#              #
-#    Updated: 2026/02/09 21:36:06 by ybarakat         ###   ########.fr        #
+#    Updated: 2026/02/10 10:49:51 by ybarakat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 def ft_hello_garden():
-        print("Hello, Garden Community!")
+    print("Hello, Garden Community!")
