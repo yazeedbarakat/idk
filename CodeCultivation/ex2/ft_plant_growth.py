@@ -1,24 +1,31 @@
-class plant:
-    def __init__(self, name, hight, page):
+class Plant:
+    def __init__(self, name: str, height: int, age: int) -> None:
         self.name = name
-        self.hight = hight
-        self.page = page
-        self.get_info()
-    def print_plant(self):
-        print(f"{self.name}: {self.hight}cm, {self.page} dayes old")
+        self.height = height
+        self.age = age
+
+    def print_plant(self) -> None:
+        print(f"{self.name}: {self.height}cm, {self.age} days old")
+
     def grow(self):
-        self.hight += 1
-    def age(self):
-        self.page += 1
-    def get_info(self):
-        print("=== Day 1 ===")
-        self.print_plant()
-        doh = self.hight
-        for i in range (1, 7):
+        self.height += 1
+
+    def iage(self):
+        self.age += 1
+
+    def get_info(self, day: int) -> None:
+        doh = self.height
+        for i in range(1, day):
             self.grow()
-            self.age()
-            i += 1
-        print("=== Day 7 ===")
+            self.iage()
         self.print_plant()
-        print(f"Growth this week: +{self.hight - doh}cm")
-p1 = plant("Rose", 25, 30)
+        if self.height - doh > 0:
+            print(f"Growth this week: +{self.height - doh}cm")
+
+
+if __name__ == "__main__":
+    p1 = Plant("Rose", 25, 30)
+    print("=== Day 1 ===")
+    p1.get_info(1)
+    print("=== Day 7 ===")
+    p1.get_info(7)

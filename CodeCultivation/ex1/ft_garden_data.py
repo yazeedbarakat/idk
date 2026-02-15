@@ -1,15 +1,18 @@
-class plant:
-    print("=== Garden Plant Registry ===")
-    def __init__(self, name, hight, age):
+class Plant:
+    def __init__(self, name: str, hight: int, age: int) -> None:
         self.name = name
         self.hight = hight
         self.age = age
-        self.print_plant()
 
     def print_plant(self):
-        print(f"{self.name}: {self.hight}cm, {self.age} dayes old")
+        print(f"{self.name}: {self.hight}cm, {self.age} days old")
 
 
-p1 = plant("Rose", 25, 30)
-p2 = plant("Sunflower", 80, 45)
-p3 = plant("Cactus", 15, 120)
+if __name__ == "__main__":
+    print("=== Garden Plant Registry ===")
+    p1 = Plant("Rose", 25, 30)
+    p2 = Plant("Sunflower", 80, 45)
+    p3 = Plant("Cactus", 15, 120)
+    p1.print_plant()
+    p2.print_plant()
+    p3.print_plant()
