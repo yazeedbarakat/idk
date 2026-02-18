@@ -3,31 +3,27 @@ class GardenManager:
         self.users = []
         self.gardens = {}
         self.garden_counter = 0
-    
+
     def hvtest(self) -> None:
         hvt = False
         total = 0
         for u in self.users:
             plants = self.gardens[u]
             for p in plants:
-                total += p.height
-                if type(p) == PrizeFlower:
-                    total += p.points
+                total += p.get_score()
         if total > 100:
             hvt = True
         print(f"Height validation test: {hvt}")
-        
+
     def scores(self) -> None:
-        print("Garden scores - ", end = " ")
+        print("Garden scores - ", end=" ")
         for u in self.users:
             total = 0
             plants = self.gardens[u]
             for p in plants:
-                total += p.height
-                if type(p) == PrizeFlower:
-                    total += p.points
+                total += p.get_score()
             if u == "Alice":
-                print(f"{u}: {total},", end = " ")
+                print(f"{u}: {total},", end=" ")
             else:
                 print(f"{u}: {total}")
 
@@ -36,18 +32,20 @@ class GardenManager:
             self.users.append(name)
             self.gardens[name] = []
             self.garden_counter += 1
-            
+
     def add_plant(self, user: str, name: str, height: int) -> None:
         plant = Plant(name, height)
         self.gardens[user].append(plant)
         print(f"Added {name} to {user}'s garden")
-    
-    def add_flowering_plant(self, user: str, name: str, height: int, color: str) -> None:
+
+    def add_flowering_plant(self, user: str, name: str,
+                            height: int, color: str) -> None:
         plant = FloweringPlant(name, height, color)
         self.gardens[user].append(plant)
         print(f"Added {name} to {user}'s garden")
 
-    def add_prize_flower(self, user: str, name: str, height: int, color: str, points: int) -> None:
+    def add_prize_flower(self, user: str, name: str, height: int,
+                         color: str, points: int) -> None:
         plant = PrizeFlower(name, height, color, points)
         self.gardens[user].append(plant)
         print(f"Added {name} to {user}'s garden")
@@ -59,13 +57,12 @@ class GardenManager:
 
     def create_garden_network(self, user: str,
                               pla: str, h1: int,
-                              flo :str, h2: int, col1: str,
+                              flo: str, h2: int, col1: str,
                               pri: str, h3: int, col2: str, poi: int
                               ) -> None:
         self.add_plant(user, pla, h1)
         self.add_flowering_plant(user, flo, h2, col1)
         self.add_prize_flower(user, pri, h3, col2, poi)
-
 
     class GardenStats:
         def __init__(self, manager: "GardenManager", user: str) -> None:
@@ -77,16 +74,16 @@ class GardenManager:
         def plants_in_garden(plants: list) -> None:
             print("Plants in garden:")
             for i in plants:
-                if type(i) == PrizeFlower:
-                    print(f"- {i.name}: {i.height}cm, {i.color}", end = " ")
+                if i.get_type() == "prize":
+                    print(f"- {i.name}: {i.height}cm, {i.color}", end=" ")
                     if i.bloom:
-                        print("(blooming)", end = " ")
+                        print("(blooming)", end=" ")
                     print(f", Prize points: {i.points}")
-                elif type(i) == FloweringPlant:
-                    print(f"- {i.name}: {i.height}cm, {i.color}")
+                elif i.get_type() == "flowering":
+                    print(f"- {i.name}: {i.height}cm, {i.color}", end=" ")
                     if i.bloom:
                         print("(blooming)")
-                elif type(i) == Plant:
+                elif i.get_type() == "regular":
                     print(f"- {i.name}: {i.height}cm")
 
         @staticmethod
@@ -95,16 +92,18 @@ class GardenManager:
             flowering = 0
             prize = 0
             for p in plants:
-                    if type(p) == PrizeFlower:
-                        prize += 1
-                    elif type(p) == FloweringPlant:
-                        flowering += 1
-                    elif type(p) == Plant:
-                        regular += 1
+                if p.get_type() == "prize":
+                    prize += 1
+                elif p.get_type() == "flowering":
+                    flowering += 1
+                elif p.get_type() == "regular":
+                    regular += 1
             total_plants = regular + flowering + prize
-            print(f"\nPlants added: {total_plants}, Total growth: {total_plants}cm")
-            print(f"Plant types: {regular} regular, {flowering} flowering, {prize} prize flowers\n")
-    
+            print(f"\nPlants added: {total_plants}", end=" ")
+            print(f"Total growth: {total_plants}cm")
+            print(f"Plant types: {regular} regular", end=" ")
+            print(f"{flowering} flowering, {prize} prize flowers\n")
+
 
 class Plant:
     def __init__(self, name: str, height: int):
@@ -117,22 +116,34 @@ class Plant:
 
     def get_score(self) -> int:
         return self.height
-    
+
+    def get_type(self):
+        return "regular"
+
 
 class FloweringPlant(Plant):
     def __init__(self, name: str, height: int, color: str):
         super().__init__(name, height)
         self.color = color
+        self.bloom = True
+
+    def notblooming(self):
         self.bloom = False
 
-    def blooming(self):
-        self.bloom = True
+    def get_type(self):
+        return "flowering"
 
 
 class PrizeFlower(FloweringPlant):
     def __init__(self, name: str, height: int, color: str, points: int):
         super().__init__(name, height, color)
         self.points = points
+
+    def get_score(self):
+        return self.height + self.points
+
+    def get_type(self):
+        return "prize"
 
 
 if __name__ == "__main__":
