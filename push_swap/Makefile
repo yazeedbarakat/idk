@@ -1,17 +1,8 @@
-# ==============================
-# project name
-# ==============================
 NAME = push_swap
 
-# ==============================
-# Compiler and flags
-# ==============================
 CC = cc
 CFLAGS = -Werror -Wextra -Wall
 
-#===============================
-# Source files
-# ==============================
 SRCS = \
        adaptive.c\
        check_errors.c\
@@ -30,16 +21,13 @@ SRCS = \
        ra_rb_rr.c\
        sa_sb_ss.c\
        str_err.c\
-       bench.c
+       bench.c\
+       split.c\
+       normalise_args.c\
+       free_stack.c
 
-# ===============================
-# Object files
-# ===============================
 OBJS = $(SRCS:.c=.o)
 
-# ===============================
-#  Rules
-#  ==============================
 all: $(NAME)
 
 $(NAME): $(OBJS)

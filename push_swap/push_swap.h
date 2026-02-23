@@ -6,7 +6,7 @@
 /*   By: ybarakat <ybarakat@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 16:30:47 by ybarakat          #+#    #+#             */
-/*   Updated: 2026/02/06 19:17:47 by ybarakat         ###   ########.fr       */
+/*   Updated: 2026/02/08 09:23:18 by ybarakat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PUSH_SWAP_H
@@ -43,9 +43,14 @@ typedef struct ben
 }					t_bench;
 typedef struct r
 {
-	int start;
-	int end;
-}					t_range;
+	int	start;
+	int	end;
+}	t_range;
+typedef struct n
+{
+	int	active;
+	int	total;
+}	t_new;
 t_stack				*make_stack(int c, char **arg);
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
 int					check_error(int c, char **arg);
@@ -59,7 +64,7 @@ t_bench				*make_bench(void);
 void				index_stack(t_stack *a);
 int					bench(char **arg);
 int					num_of_flags(int c, char **arg);
-int					check_dup(int c, char **arg);
+int					check_dup(int c, char **arg, int i, int n);
 int					get_size(t_stack *s);
 int					get_min(t_stack **s);
 int					get_max(t_stack **s);
@@ -83,5 +88,9 @@ void				rra(t_stack **a, t_bench *bench);
 void				rrb(t_stack **b, t_bench *bench);
 void				rrr(t_stack **a, t_stack **b, t_bench *bench);
 int					str_err(int c, char **arg);
+char				**ft_split(char const *s, char c, int i, int j);
+char				**normalize_args(int *argc, char **argv);
+void				free_stack(t_stack *a);
+int					cmp(char *str);
 
 #endif

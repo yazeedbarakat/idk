@@ -6,7 +6,7 @@
 /*   By: ybarakat <yazeed.barakat@learner.42.tech>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 23:57:04 by ybarakat          #+#    #+#             */
-/*   Updated: 2026/02/06 19:34:17 by ybarakat         ###   ########.fr       */
+/*   Updated: 2026/02/07 11:38:01 by ybarakat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,13 @@ void	push_back_b(t_stack **a, t_stack **b, t_bench *bench)
 	pa(a, b, bench);
 }
 
+void	extra(t_stack **a, t_stack **b, t_bench *bench, t_range *range)
+{
+	while (get_size(*b) > 0)
+		push_back_b(a, b, bench);
+	free(range);
+}
+
 void	medium_sort(t_stack **a, t_stack **b, t_bench *bench)
 {
 	t_range	*range;
@@ -85,7 +92,5 @@ void	medium_sort(t_stack **a, t_stack **b, t_bench *bench)
 		range->end = range->start + range_size;
 		sort_extend(a, b, range, bench);
 	}
-	while (get_size(*b) > 0)
-		push_back_b(a, b, bench);
-	free(range);
+	extra(a, b, bench, range);
 }

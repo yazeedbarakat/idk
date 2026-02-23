@@ -46,6 +46,6 @@ void	rrr(t_stack **a, t_stack **b, t_bench *bench)
 {
 	reverse_rotate(a);
 	reverse_rotate(b);
-	write (1, "rrr\n", 4);
+	write(1, "rrr\n", 4);
 	bench->rrr++;
 }

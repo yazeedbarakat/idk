@@ -1,42 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   str_err.c                                          :+:      :+:    :+:   */
+/*   free_stack.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sabaraka <sabaraka@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/07 14:09:03 by sabaraka          #+#    #+#             */
-/*   Updated: 2026/02/07 16:00:45 by sabaraka         ###   ########.fr       */
+/*   Created: 2026/02/07 14:08:23 by sabaraka          #+#    #+#             */
+/*   Updated: 2026/02/07 14:08:25 by sabaraka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	is_str(char c)
+void	free_stack(t_stack *a)
 {
-	if (c >= '0' && c <= '9')
-		return (0);
-	return (1);
-}
+	t_stack	*temp;
 
-int	str_err(int c, char **arg)
-{
-	int	i;
-	int	j;
-
-	i = num_of_flags(c, arg) + 1;
-	while (arg[i])
+	if (!a)
+		return ;
+	while (a)
 	{
-		j = 0;
-		while (arg[i][j])
-		{
-			if ((arg[i][j] == '-' || arg[i][j] == '+') && j == 0)
-				j++;
-			if (is_str(arg[i][j]))
-				return (1);
-			j++;
-		}
-		i++;
+		temp = a;
+		a = a->next;
+		free(temp);
 	}
-	return (0);
 }

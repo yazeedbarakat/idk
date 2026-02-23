@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   make_stack.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbarakat <sbarakat@learner.42.tech>        +#+  +:+       +#+        */
+/*   By: sabaraka <sabaraka@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/27 11:31:26 by sbarakat          #+#    #+#             */
-/*   Updated: 2026/02/06 19:35:37 by ybarakat         ###   ########.fr       */
+/*   Created: 2026/02/07 14:10:09 by sabaraka          #+#    #+#             */
+/*   Updated: 2026/02/07 14:10:12 by sabaraka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ static int	pown(int power)
 	}
 	return (sum);
 }
+
 int	len(const char *str)
 {
 	int	i;
@@ -58,6 +59,14 @@ int	atoi(const char *str)
 	return (neg * sum);
 }
 
+t_stack	*ms_help(t_stack *p, t_stack *l)
+{
+	l->index = -1;
+	p->next = l;
+	l->prev = p;
+	return (l);
+}
+
 t_stack	*make_stack(int c, char **arg)
 {
 	t_stack	*p;
@@ -80,11 +89,8 @@ t_stack	*make_stack(int c, char **arg)
 		if (!l)
 			return (NULL);
 		l->value = atoi(arg[i++]);
-		l->index = -1;
-		p->next = l;
-		l->prev = p;
-		p = l;
+		p = ms_help(p, l);
 	}
-	l->next = NULL;
+	p->next = NULL;
 	return (top);
 }

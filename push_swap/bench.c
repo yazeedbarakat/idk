@@ -6,7 +6,7 @@
 /*   By: ybarakat <ybarakat@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 15:52:21 by ybarakat          #+#    #+#             */
-/*   Updated: 2026/02/06 19:09:45 by ybarakat         ###   ########.fr       */
+/*   Updated: 2026/02/08 08:58:51 by ybarakat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	print_help(int num)
 	char	*str;
 
 	str = ft_itoa(num);
-	write (2, str, len(str));
+	write(2, str, len(str));
 	free(str);
 }
 
@@ -86,7 +86,6 @@ t_bench	*make_bench(void)
 	bench->rra = 0;
 	bench->rrb = 0;
 	bench->rrr = 0;
-	bench->strategy = "Adaptive";
 	bench->active = 0;
 	return (bench);
 }
