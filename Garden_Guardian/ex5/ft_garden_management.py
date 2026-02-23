@@ -1,10 +1,11 @@
 class GardenManager:
     plants = []
-    def add_plant(self, plant: str) -> None:
+    def add_plant(self, name: str, water_level: int, sunlight_hours: int) -> None:
         try:
             if plant == "":
                 raise ValueError
             self.plants += [plant]
+            self.{name}
             print(f"Added {plant} successfully")
         except ValueError:
             print("Error adding plant: Plant name cannot be empty!")
@@ -41,15 +42,18 @@ class GardenManager:
             print(f"Error checking {plant}")
 
 class Plant:
-
+    def __init__(self, n: str, wl: int, sh: int):
+        self.name = n
+        self.water_level = wl
+        self.sunlight_hours = sh
 
 
 if __name__ == "__main__":
     print("=== Garden Management System ===")
     print("\nAdding plants to garden...")
     gm = GardenManager()
-    gm.add_plant("tomato")
-    gm.add_plant("lettuce")
+    gm.add_plant("tomato", 5, 8)
+    gm.add_plant("lettuce", 15, 7)
     gm.add_plant("")
     print("\nWatering plants...")
     gm.water_plants()
