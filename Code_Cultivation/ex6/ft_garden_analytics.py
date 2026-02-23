@@ -29,25 +29,25 @@ class GardenManager:
 
     def add_user(self, name: str) -> None:
         if name not in self.users:
-            self.users.append(name)
+            self.users += [name]
             self.gardens[name] = []
             self.garden_counter += 1
 
     def add_plant(self, user: str, name: str, height: int) -> None:
         plant = Plant(name, height)
-        self.gardens[user].append(plant)
+        self.gardens[user] += [plant]
         print(f"Added {name} to {user}'s garden")
 
     def add_flowering_plant(self, user: str, name: str,
                             height: int, color: str) -> None:
         plant = FloweringPlant(name, height, color)
-        self.gardens[user].append(plant)
+        self.gardens[user] += [plant]
         print(f"Added {name} to {user}'s garden")
 
     def add_prize_flower(self, user: str, name: str, height: int,
                          color: str, points: int) -> None:
         plant = PrizeFlower(name, height, color, points)
-        self.gardens[user].append(plant)
+        self.gardens[user] += [plant]
         print(f"Added {name} to {user}'s garden")
 
     def grow_all(self, user: str) -> None:
