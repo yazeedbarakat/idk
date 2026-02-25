@@ -15,7 +15,7 @@ def check_plant_health(plant_name: str, water_level: int,
     return f"Plant '{plant_name}' is healthy!"
 
 
-def test_errors() -> None:
+def test_plants_checks() -> None:
     print("=== Garden Plant Health Checker ===")
     print("\nTesting good values...")
     try:
@@ -42,4 +42,4 @@ def test_errors() -> None:
 
 
 if __name__ == "__main__":
-    test_errors()
+    test_plants_checks()
