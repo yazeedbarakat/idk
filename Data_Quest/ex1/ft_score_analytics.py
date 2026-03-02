@@ -5,7 +5,7 @@ if __name__ == "__main__":
         print("=== Player Score Analytics ===")
         argl = len(sys.argv)
         if argl == 1:
-            raise ValueError("No scores provided.")
+            raise ValueError("No scores provided")
         ls = []
         for i in range(1, argl):
             ls += [int(sys.argv[i])]
