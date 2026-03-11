@@ -6,7 +6,8 @@ if __name__ == "__main__":
             print("Vault connection established with failsafe protocols\n")
             print(f"SECURE EXTRACTION:\n{f.read()}")
         with open("security_protocols.txt", 'w') as f:
-            print(f"SECURE PRESERVATION:\n[CLASSIFIED] New security protocols archived")
+            print("SECURE PRESERVATION:\n[CLASSIFIED] ",
+                  "New security protocols archived")
             f.write("[CLASSIFIED] New security protocols archived")
         print("Vault automatically sealed upon completion\n")
         print("All vault operations completed with maximum security.")

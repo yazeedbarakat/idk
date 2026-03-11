@@ -7,6 +7,6 @@ if __name__ == "__main__":
         print("RECOVERED DATA:")
         print(f.read())
         f.close()
-        print("Data recovery complete. Storage unit disconnected.")
+        print("\nData recovery complete. Storage unit disconnected.")
     except FileNotFoundError:
         print("ERROR Storage vault not found. Run data generator first.")

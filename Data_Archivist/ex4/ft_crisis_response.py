@@ -14,10 +14,14 @@ if __name__ == "__main__":
     except PermissionError:
         print("RESPONSE: Security protocols deny access")
         print("STATUS: Crisis handled, security maintained")
+    except FileNotFoundError:
+        print("RESPONSE: Vault not found")
+        print("STATUS: Crisis handled, system stable")
     print("\nROUTINE ACCESS: Attempting access to ’standard_archive.txt’...")
     try:
         with open("standard_archive.txt", 'r') as f:
-            print('SUCCESS: Archive recovered - “Knowledge preserved for humanity”')
+            print('SUCCESS: Archive recovered - ',
+                  '“Knowledge preserved for humanity”')
         print("STATUS: Normal operations resumed")
     except FileNotFoundError:
         print("RESPONSE: Archive not found in storage matrix")
