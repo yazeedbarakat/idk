@@ -7,8 +7,8 @@ if __name__ == "__main__":
         if argl == 1:
             raise ValueError("No scores provided")
         ls = []
-        for i in range(1, argl):
-            ls += [int(sys.argv[i])]
+        for a in sys.argv[1:]:
+            ls += [int(a)]
         print(f"Scores processed: {ls}")
         print(f"Total players: {argl - 1}")
         print(f"Total score: {sum(ls)}")

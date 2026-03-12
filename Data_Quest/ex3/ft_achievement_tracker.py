@@ -13,7 +13,8 @@ if __name__ == "__main__":
     print(f"Total unique achievements: {len(unique)}\n")
     common = alice.intersection(bob, charlie)
     print(f"Common to all players: {common}")
-    rare = {a for a in unique if sum(a in p for p in [alice, bob, charlie]) == 1}
+    rare = alice.difference(bob, charlie).union(bob.difference(alice, charlie),
+                                                charlie.difference(alice, bob))
     print(f"Rare achievements (1 player): {rare}\n")
     print(f"Alice vs Bob common: {alice.intersection(bob)}")
     print(f"Alice unique: {alice.difference(bob)}")

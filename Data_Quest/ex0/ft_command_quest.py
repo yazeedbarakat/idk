@@ -9,6 +9,8 @@ if __name__ == "__main__":
     else:
         print(f"Program name: {sys.argv[0]}")
         print(f"Arguments received: {argl - 1}")
-    for i in range(1, argl):
-        print(f"Argument {i}: {sys.argv[i]}")
-    print(f"Total arguments: {argl}")    
+    i = 1
+    for a in sys.argv[1:]:
+        print(f"Argument {i}: {a}")
+        i += 1
+    print(f"Total arguments: {argl}")
