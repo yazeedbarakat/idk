@@ -1,4 +1,4 @@
-import typing
+from typing import Protocol , Any
 from abc import ABC, abstractmethod
 
 
@@ -9,11 +9,11 @@ class DataProcessor(ABC):
         self.name: str = ""
 
     @abstractmethod
-    def validate(self, data: typing.Any) -> bool:
+    def validate(self, data: Any) -> bool:
         pass
 
     @abstractmethod
-    def ingest(self, data: typing.Any) -> None:
+    def ingest(self, data: Any) -> None:
         pass
 
     def output(self) -> tuple[int, str]:
@@ -28,7 +28,7 @@ class NumericProcessor(DataProcessor):
         self.total: int = 0
         self.name: str = "Numeric Processor"
 
-    def validate(self, data: typing.Any) -> bool:
+    def validate(self, data: Any) -> bool:
         if isinstance(data, (int, float)):
             return True
         elif isinstance(data, list):
@@ -36,7 +36,7 @@ class NumericProcessor(DataProcessor):
         else:
             return False
 
-    def ingest(self, data: typing.Any) -> None:
+    def ingest(self, data: Any) -> None:
         if not self.validate(data):
             raise ValueError("Improper numeric data")
         if isinstance(data, list):
@@ -54,7 +54,7 @@ class TextProcessor(DataProcessor):
         self.total: int = 0
         self.name: str = "Text Processor"
 
-    def validate(self, data: typing.Any) -> bool:
+    def validate(self, data: Any) -> bool:
         if isinstance(data, str):
             return True
         elif isinstance(data, list):
@@ -62,7 +62,7 @@ class TextProcessor(DataProcessor):
         else:
             return False
 
-    def ingest(self, data: typing.Any) -> None:
+    def ingest(self, data: Any) -> None:
         if not self.validate(data):
             raise ValueError("Improper text data")
         if isinstance(data, list):
@@ -80,7 +80,7 @@ class LogProcessor(DataProcessor):
         self.total: int = 0
         self.name: str = "Log Processor"
 
-    def validate(self, data: typing.Any) -> bool:
+    def validate(self, data: Any) -> bool:
         if isinstance(data, dict):
             return all(isinstance(k, str) and isinstance(v, str)
                        for k, v in data.items())
@@ -91,7 +91,7 @@ class LogProcessor(DataProcessor):
         else:
             return False
 
-    def ingest(self, data: typing.Any) -> None:
+    def ingest(self, data: Any) -> None:
         if not self.validate(data):
             raise ValueError("Improper log data")
         if isinstance(data, list):
@@ -103,6 +103,11 @@ class LogProcessor(DataProcessor):
             self.total += 1
 
 
+class ExportPlugin(Protocol):
+    def process_output(self, data: list[tuple[int, str]]) -> None:
+        ...
+
+
 class DataStream():
     def __init__(self) -> None:
         self.processors: list[DataProcessor] = []
@@ -110,7 +115,7 @@ class DataStream():
     def register_processor(self, proc: DataProcessor) -> None:
         self.processors += [proc]
 
-    def process_stream(self, stream: list[typing.Any]) -> None:
+    def process_stream(self, stream: list[Any]) -> None:
         for i in stream:
             h = False
             for j in self.processors:
@@ -131,35 +136,58 @@ class DataStream():
             print(f"{name}: total {proc.total} items processed, "
                   f"remaining {remaining} on processor")
 
+    def output_pipeline(self, nb: int, plugin: ExportPlugin) -> None:
+        for i in self.processors:
+            l: list[tuple[int, str]] = []
+            for j in range(min(nb, len(i.queue))):
+                l.append(i.output())
+            if l:
+                plugin.process_output(l)
+
+
+class CSVExportPlugin:
+    def process_output(self, data: list[tuple[int, str]]) -> None:
+        print("CSV Output:")
+        print(",".join(val for i, val in data))
+
+
+class JSONExportPlugin:
+    def process_output(self, data: list[tuple[int, str]]) -> None:
+        print("JSON Output:")
+        print("{" + ", ".join(f'"item_{i}": "{v}"' for i, v in data) + "}")
+
+
 if __name__ == "__main__":
-    print("=== Code Nexus - Data Stream ===\n")
+    print("=== Code Nexus - Data Pipeline ===\n")
     stream = DataStream()
     print("Initialize Data Stream...")
     print("== DataStream statistics ==")
     stream.print_processors_stats()
-    print("\nRegistering Numeric Processor")
+    print("\nRegistering Processors")
     stream.register_processor(NumericProcessor())
-    batch = ['Hello world', [3.14, -1, 2.71],
-             [{'log_level': 'WARNING', 'log_message': 'Telnet access! Use ssh instead'},
-              {'log_level': 'INFO', 'log_message': 'User wil is connected'}],
-             42, ['Hi', 'five']]
-    print(f"\nSend first batch of data on stream: {batch}")
-    stream.process_stream(batch)
-    print("== DataStream statistics ==")
-    stream.print_processors_stats()
-    print("\nRegistering other data processors")
     stream.register_processor(TextProcessor())
     stream.register_processor(LogProcessor())
-    print("Send the same batch again")
-    stream.process_stream(batch)
+    batch1 = ['Hello world', [3.14, -1, 2.71],
+              [{'log_level': 'WARNING', 'log_message': 'Telnet access! Use ssh instead'},
+               {'log_level': 'INFO', 'log_message': 'User wil is connected'}],
+              42, ['Hi', 'five']]
+    print(f"\nSend first batch of data on stream: {batch1}")
+    stream.process_stream(batch1)
     print("== DataStream statistics ==")
     stream.print_processors_stats()
-    print("\nConsume some elements from the data processors: Numeric 3, Text 2, Log 1")
-    for i in range(3):
-        stream.processors[0].output()
-    for i in range(2):
-        stream.processors[1].output()
-    for i in range(1):
-        stream.processors[2].output()
+    print("\nSend 3 processed data from each processor to a CSV plugin:")
+    stream.output_pipeline(3, CSVExportPlugin())
+    print("== DataStream statistics ==")
+    stream.print_processors_stats()
+    batch2 = [21, ['I love AI', 'LLMs are wonderful', 'Stay healthy'],
+              [{'log_level': 'ERROR', 'log_message': '500 server crash'},
+               {'log_level': 'NOTICE', 'log_message': 'Certificate expires in 10 days'}],
+              [32, 42, 64, 84, 128, 168], 'World hello']
+    print(f"\nSend another batch of data: {batch2}")
+    stream.process_stream(batch2)
+    print("== DataStream statistics ==")
+    stream.print_processors_stats()
+    print("\nSend 5 processed data from each processor to a JSON plugin:")
+    stream.output_pipeline(5, JSONExportPlugin())
     print("== DataStream statistics ==")
     stream.print_processors_stats()
