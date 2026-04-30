@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import Any
-from ex0 import Creature
-from ex1 import HealCapability, TransformCapability
+from ex0.creatures import Creature
+from ex1.capabilities import HealCapability, TransformCapability
 
 
 class BattleStrategy(ABC):
