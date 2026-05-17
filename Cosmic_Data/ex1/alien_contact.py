@@ -29,11 +29,11 @@ class AlienContact(BaseModel):
             raise ValueError("Physical contact reports must be verified")
         if self.contact_type == ContactType.telepathic \
                 and self.witness_count < 3:
-            raise ValueError("Telepathic contact requires at least ",
-                             "3 witnesses")
+            m = "Telepathic contact requires at least 3 witnesses"
+            raise ValueError(m)
         if self.signal_strength > 7 and self.message_received is None:
-            raise ValueError("Strong signals (> 7.0) should ",
-                             "include received messages")
+            m = "Strong signals (> 7.0) should include received messages"
+            raise ValueError(m)
         return self
 
 
@@ -45,7 +45,7 @@ def main() -> None:
         contact_id="AC_2024_001",
         timestamp=datetime.now(),
         location="Area 51, Nevada",
-        contact_type="radio",
+        contact_type=ContactType.radio,
         signal_strength=8.5,
         duration_minutes=45,
         witness_count=5,
@@ -66,7 +66,7 @@ def main() -> None:
             contact_id="AC_2024_001",
             timestamp=datetime.now(),
             location="Area 51, Nevada",
-            contact_type="telepathic",
+            contact_type=ContactType.telepathic,
             signal_strength=8.5,
             duration_minutes=45,
             witness_count=1,

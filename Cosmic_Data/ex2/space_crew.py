@@ -37,13 +37,13 @@ class SpaceMission(BaseModel):
             raise ValueError("Mission ID must start with 'M'")
         ranks = [r.rank for r in self.crew]
         if Rank.commander not in ranks and Rank.captain not in ranks:
-            raise ValueError("Mission must have at least one ",
-                             "Commander or Captain")
+            m = "Mission must have at least one Commander or Captain"
+            raise ValueError(m)
         if self.duration_days > 365:
             experienced = [e for e in self.crew if e.years_experience >= 5]
             if len(experienced) < len(self.crew) * 0.5:
-                raise ValueError("Long missions need 50% ",
-                                 "experienced crew (5+ years)")
+                m = "Long missions need 50% experienced crew (5+ years)"
+                raise ValueError(m)
         if not all(m.is_active for m in self.crew):
             raise ValueError("All crew members must be active")
         return self
@@ -56,7 +56,7 @@ def main() -> None:
     sarah = CrewMember(
         member_id="cm1",
         name="Sarah Connor",
-        rank="commander",
+        rank=Rank.commander,
         age=30,
         specialization="Mission Command",
         years_experience=10,
@@ -64,7 +64,7 @@ def main() -> None:
     john = CrewMember(
         member_id="cm2",
         name="John Smith",
-        rank="lieutenant",
+        rank=Rank.lieutenant,
         age=30,
         specialization="Navigation",
         years_experience=10,
@@ -72,7 +72,7 @@ def main() -> None:
     alice = CrewMember(
         member_id="cm3",
         name="Alice Johnson",
-        rank="officer",
+        rank=Rank.officer,
         age=30,
         specialization="Engineering",
         years_experience=10,
@@ -100,7 +100,7 @@ def main() -> None:
     ronaldo = CrewMember(
         member_id="cm4",
         name="Cristiano Ronaldo",
-        rank="cadet",
+        rank=Rank.cadet,
         age=30,
         specialization="Engineering",
         years_experience=10,
