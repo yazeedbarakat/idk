@@ -7,6 +7,7 @@ def power_filter(mages: list[dict], min_power: int) -> list[dict]:
 def spell_transformer(spells: list[str]) -> list[str]:
     return list(map(lambda x: '* ' + x + ' *', spells))
 
-
 def mage_stats(mages: list[dict]) -> dict:
-    return 
+    most = max(mages, key=lambda x: x['power'])
+    least = min(mages, key=lambda x: x['power'])
+    avg = 
