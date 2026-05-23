@@ -1,16 +1,18 @@
-[tool.poetry]
-name = "ex1-matrix-loader"
+[project]
+name = "ex1"
 version = "0.1.0"
-description = "Matrix data analysis"
-authors = ["Yazeed <yazeedbarakat731@gmail.com>"]
-readme = "README.md"
+description = ""
+authors = [
+    {name = "Your Name",email = "you@example.com"}
+]
+requires-python = ">=3.13"
+dependencies = [
+    "numpy (>=2.4.6,<3.0.0)",
+    "pandas (>=3.0.3,<4.0.0)",
+    "matplotlib (>=3.10.9,<4.0.0)"
+]
 
-[tool.poetry.dependencies]
-python = "^3.10"
-pandas = "^3.0.2"
-numpy = "^2.4.4"
-matplotlib = "^3.10.9"
 
 [build-system]
-requires = ["poetry-core"]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"

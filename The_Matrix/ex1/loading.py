@@ -13,21 +13,23 @@ def checkdep() -> bool:
         print(e)
         imported = False
     try:
-        import matplotlib as plt
+        import matplotlib as plt  # type: ignore[import-not-found]
         print(f"[OK] matplotlib {plt.__version__} - Visualization ready")
     except ImportError as e:
         print(e)
         imported = False
     if not imported:
-        print("you should use pip install -r requirements.txt or poetry install")
+        print("you should use pip install -r requirements.txt ",
+              "or poetry install")
         return False
     return True
 
+
 if __name__ == "__main__":
-    if(checkdep()):
+    if checkdep():
         import pandas as pd
         import numpy as np
-        import matplotlib.pyplot as plt
+        import matplotlib.pyplot as plt  # type: ignore[import-not-found]
         print("Analyzing Matrix data...")
         print("Processing 1000 data points...")
         data = np.random.normal(0, 1, 1000)
