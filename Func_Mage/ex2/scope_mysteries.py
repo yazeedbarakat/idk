@@ -2,67 +2,60 @@ from collections.abc import Callable
 
 
 def mage_counter() -> Callable:
-    count = 0
-
+    count: int = 0
     def counter() -> int:
         nonlocal count
         count += 1
         return count
-
     return counter
 
-
 def spell_accumulator(initial_power: int) -> Callable:
-    total = initial_power
-
-    def accumulate(amount: int) -> int:
-        nonlocal total
-        total += amount
-        return total
-
-    return accumulate
+    def power_adder(amount: int) -> int:
+        nonlocal initial_power
+        initial_power += amount
+        return initial_power
+    return power_adder
 
 
 def enchantment_factory(enchantment_type: str) -> Callable:
-    def enchant(item_name: str) -> str:
-        return f"{enchantment_type} {item_name}"
-    return enchant
-
+    return lambda item: f"{enchantment_type} {item}"
 
 def memory_vault() -> dict[str, Callable]:
-    storage: dict = {}
-
-    def store(key: str, value: object) -> None:
-        storage[key] = value
-
-    def recall(key: str) -> object:
-        return storage.get(key, "Memory not found")
-
+    d = {}
+    def store(key: str, value: int) -> None:
+        d[key] = value
+    def recall(key: str) -> int | str:
+        try:
+            return d[key]
+        except KeyError:
+            return "Memory not found"
     return {'store': store, 'recall': recall}
 
 
-if __name__ == "__main__":
+def main() -> None:
     print("Testing mage counter...")
     counter_a = mage_counter()
     counter_b = mage_counter()
-    print(f"counter_a call 1:  {counter_a()}")
-    print(f"counter_a call 2:  {counter_a()}")
-    print(f"counter_b call 1:  {counter_b()}")
-
+    print("counter_a call 1:", counter_a())
+    print("counter_a call 2:", counter_a())
+    print("counter_b call 1:", counter_b())
     print("\nTesting spell accumulator...")
-    acc1 = spell_accumulator(100)
-    print(f"Base 100, add 20:  {acc1(20)}")
-    print(f"Base 100, add 30:  {acc1(30)}")
-
+    accumulator = spell_accumulator(100)
+    print("Base 100, add 20:", accumulator(20))
+    print("Base 100, add 30:", accumulator(30))
     print("\nTesting enchantment factory...")
-    flaming = enchantment_factory("Flaming")
-    frozen = enchantment_factory("Frozen")
-    print(flaming("Sword"))
-    print(frozen("Shield"))
-
+    Flaming = enchantment_factory("Flaming")
+    Frozen = enchantment_factory("Frozen")
+    print(Flaming("Sword"))
+    print(Frozen("Shield"))
     print("\nTesting memory vault...")
     vault = memory_vault()
-    vault['store']('secret', 42)
+    store = vault['store']
+    recall = vault['recall']
     print("Store 'secret' = 42")
-    print(f"Recall 'secret':  {vault['recall']('secret')}")
-    print(f"Recall 'unknown':  {vault['recall']('unknown')}")
+    store('secret', 42)
+    print("Recall 'secret':", recall('secret'))
+    print("Recall 'unknown':", recall('unknown'))
+
+if __name__ == "__main__":
+    main()
