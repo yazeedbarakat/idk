@@ -38,6 +38,16 @@ def retry_spell(max_attempts: int) -> Callable:
         return wrapper
     return decorator
 
+class MageGuild:
+    @staticmethod
+    def validate_mage_name(name) -> str:
+        if len(name) >= 3 and x not in 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ ' for x in name:
+            return 'name is invalid'
+        return 'name is valid'
+    @power_validator(10)
+    def cast_spell(self, spell_name, power):
+        return f"Successfully cast {spell_name} with {power} power"
+        
 
 @spell_timer
 def fireball() -> str:
