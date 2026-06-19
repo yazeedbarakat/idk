@@ -1,15 +1,18 @@
 from collections.abc import Callable
+from typing import Any
 
 
-def mage_counter() -> Callable:
+def mage_counter() -> Callable[[], int]:
     count: int = 0
+
     def counter() -> int:
         nonlocal count
         count += 1
         return count
     return counter
 
-def spell_accumulator(initial_power: int) -> Callable:
+
+def spell_accumulator(initial_power: int) -> Callable[[int], int]:
     def power_adder(amount: int) -> int:
         nonlocal initial_power
         initial_power += amount
@@ -17,14 +20,17 @@ def spell_accumulator(initial_power: int) -> Callable:
     return power_adder
 
 
-def enchantment_factory(enchantment_type: str) -> Callable:
+def enchantment_factory(enchantment_type: str) -> Callable[[str], str]:
     return lambda item: f"{enchantment_type} {item}"
 
-def memory_vault() -> dict[str, Callable]:
+
+def memory_vault() -> dict[str, Callable[..., Any]]:
     d = {}
+
     def store(key: str, value: int) -> None:
         d[key] = value
-    def recall(key: str) -> int | str:
+
+    def recall(key: str) -> Any:
         try:
             return d[key]
         except KeyError:
@@ -56,6 +62,7 @@ def main() -> None:
     store('secret', 42)
     print("Recall 'secret':", recall('secret'))
     print("Recall 'unknown':", recall('unknown'))
+
 
 if __name__ == "__main__":
     main()

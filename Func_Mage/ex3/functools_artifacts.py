@@ -9,7 +9,7 @@ def base_enchantment(power: int, element: str, target: str) -> str:
 
 
 def spell_reducer(spells: list[int], operation: str) -> int:
-    operations: dict[str, Callable] = {
+    operations: dict[str, Callable[..., int]] = {
             'add': operator.add,
             'multiply': operator.mul,
             'max': max,
@@ -21,13 +21,16 @@ def spell_reducer(spells: list[int], operation: str) -> int:
         return functools.reduce(operations[operation], spells)
     except KeyError:
         print(f"{operation} isnt one of the known operations")
+        return 0
 
 
-def partial_enchanter(base_enchantment: Callable) -> dict[str, Callable]:
+def partial_enchanter(base_enchantment: Callable[..., str]
+                      ) -> dict[str, Callable[..., str]]:
     fire_enchant = functools.partial(base_enchantment, 50, 'fire')
     water_enchant = functools.partial(base_enchantment, 50, 'water')
     air_enchant = functools.partial(base_enchantment, 50, 'air')
     return {'fire': fire_enchant, 'water': water_enchant, 'air': air_enchant}
+
 
 @functools.lru_cache
 def memoized_fibonacci(n: int) -> int:
@@ -42,18 +45,17 @@ def spell_dispatcher() -> Callable[[Any], str]:
         return "Unknown spell type"
 
     @dispatcher.register(int)
-    def _(spell):
+    def _(spell: int) -> str:
         return f"{spell} damage"
 
     @dispatcher.register(str)
-    def _(spell):
+    def _(spell: str) -> str:
         return spell
 
     @dispatcher.register(list)
-    def _(spell):
+    def _(spell: list[Any]) -> str:
         return f"{len(spell)} spells"
     return dispatcher
-    
 
 
 def main() -> None:
@@ -78,6 +80,7 @@ def main() -> None:
     print("Enchantment:", dis('fireball'))
     print("Multi-cast:", dis(['fire', 'water', 'air']))
     print(dis(3.14))
+
 
 if __name__ == "__main__":
     main()
